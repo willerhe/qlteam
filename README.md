@@ -1,5 +1,6 @@
 # qlteam
 
+qlteam 是一个为小型团队轻量级的项目管理工具
 ## Project setup
 ```
 npm install
