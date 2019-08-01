@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div style="height: 60px;background-color: antiquewhite"></div>
+        <h1>project</h1>
     </div>
 </template>
 
 <script>
     export default {
-        name: "StatusBar"
+        name: "Project"
     }
 </script>
 

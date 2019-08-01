@@ -1,19 +1,18 @@
 <template>
     <div id="app">
-        <status-bar></status-bar>
-        <menu-bar></menu-bar>
-        <router-view></router-view>
+        <side-layout></side-layout>
     </div>
 </template>
 
 <script>
     import MenuBar from "./components/MenuBar";
     import StatusBar from "./components/StatusBar";
+    import SideLayout from "./layout/SideLayout";
 
 
     export default {
         name: 'app',
-        components: {MenuBar,StatusBar}
+        components: {MenuBar, StatusBar, SideLayout}
     }
 </script>
 
