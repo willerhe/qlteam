@@ -2,16 +2,24 @@
     <div>
         <el-row>
             <el-col :span="6" style="height: 80vh">
-                收件箱
+                <p>收件箱</p>
+                <draggable @update="dragEnd">
+                    <li v-for="i in inbox" style="margin-bottom: 10px">{{i.name}}</li>
+                </draggable>
+
             </el-col>
             <el-col :span="6" style="height: 80vh">
-                今天要做
+                <p>今天要做</p>
+                <draggable @update="dragEnd">
+                    <li v-for="i in nextStep" style="margin-bottom: 10px">{{i.name}}</li>
+                </draggable>
+
             </el-col>
             <el-col :span="6" style="height: 80vh">
-                下一步要做
+                <p>下一步要做</p>
             </el-col>
             <el-col :span="6" style="height: 80vh">
-                以后再做
+                <p>以后再做</p>
             </el-col>
         </el-row>
 
@@ -28,7 +36,18 @@
 
     export default {
         name: "Home",
-        components: {draggable, TaskItem}
+        components: {draggable, TaskItem},
+        data() {
+            return {
+                inbox: [{name: 1}, {name: 2}, {name: 3}],
+                nextStep: [{name: 3}, {name: 4}, {name: 5}]
+            }
+        },
+        methods: {
+            dragEnd() {
+                console.log("拖动结束")
+            }
+        }
 
     }
 </script>
