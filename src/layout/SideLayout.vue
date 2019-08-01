@@ -1,11 +1,11 @@
 <template>
     <div>
-        <el-container>
+        <el-container style="height: 100vh">
             <el-header>
                 <status-bar></status-bar>
             </el-header>
             <el-container>
-                <el-aside width="200px">
+                <el-aside width="180px">
                     <menu-bar></menu-bar>
                 </el-aside>
                 <el-main>
