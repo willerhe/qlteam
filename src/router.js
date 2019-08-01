@@ -2,15 +2,19 @@ import Router from 'vue-router'
 import Vue from 'vue'
 Vue.use(Router)
 
-import Home from "./views/dashboard/Home";
+import Task from "./views/task/Task";
 import Login from "./views/login/Login";
 
 
 const constantRouterMap = [
     {
-        path: '/home',
-        name: "home",
-        component: Home
+        path:'/',
+        component:Task
+    },
+    {
+        path: '/task',
+        name: "task",
+        component: Task
     },
     {
         path: '/login',

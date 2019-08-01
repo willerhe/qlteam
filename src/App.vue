@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <status-bar></status-bar>
         <menu-bar></menu-bar>
         <router-view></router-view>
     </div>
@@ -7,10 +8,12 @@
 
 <script>
     import MenuBar from "./components/MenuBar";
+    import StatusBar from "./components/StatusBar";
+
 
     export default {
         name: 'app',
-        components: {MenuBar}
+        components: {MenuBar,StatusBar}
     }
 </script>
 
@@ -21,6 +24,5 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-        margin-top: 60px;
     }
 </style>
