@@ -12,6 +12,7 @@
     "element-ui": "^2.11.1",
     "sortablejs": "^1.10.0-rc3",
     "vue": "^2.6.10",
+    "vue-fullcalendar": "^1.0.9",
     "vue-router": "^3.0.7",
     "vuedraggable": "^2.23.0"
   },

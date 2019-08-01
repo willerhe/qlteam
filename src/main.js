@@ -7,6 +7,9 @@ import router from "./router";
 
 Vue.use(ElementUI)
 
+import fullCalendar from 'vue-fullcalendar'
+
+Vue.component('full-calendar', fullCalendar)
 
 Vue.config.productionTip = false
 

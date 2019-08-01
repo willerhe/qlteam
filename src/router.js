@@ -9,6 +9,7 @@ import Document from "./views/document/Document";
 import Setting from "./views/setting/Setting";
 import Shared from "./views/shared/Shared";
 import Project from "./views/project/Project";
+import Calendar from "./views/task/Calendar"
 
 
 export const Routers = [
@@ -24,6 +25,14 @@ export const Routers = [
         title: "任务",
         icon: "el-icon-menu",
         component: Task
+    },
+    {
+
+        path: '/calendar',
+        name: "calendar",
+        title: "日程",
+        icon: "el-icon-date",
+        component: Calendar
     },
     {
         path: '/login',
