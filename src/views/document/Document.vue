@@ -10,29 +10,25 @@
             </el-col>
         </el-row>
         <el-row>
-            <el-col :span="4" style="text-align: center">
+            <el-col :span="4" style="text-align: center" v-for="o in 6">
                 <span class="document el-icon-folder"></span>
                 <p style="margin: 0px" align="center">小东门智能安防</p>
             </el-col>
-            <el-col :span="4">
-                <span class="document el-icon-folder"></span>
-            </el-col>
-            <el-col :span="4">
-                <span class="document el-icon-folder"></span>
-            </el-col>
-            <el-col :span="4">
-                <span class="document el-icon-folder"></span>
-            </el-col>
-            <el-col :span="4">
-                <span class="document el-icon-document"></span>
-            </el-col>
+
         </el-row>
+
+
     </div>
 </template>
 
 <script>
+
     export default {
-        name: "Document"
+        name: "Document",
+        components:{},
+        methods: {
+
+        }
     }
 </script>
 
