@@ -10,6 +10,7 @@ import Setting from "./views/setting/Setting";
 import Shared from "./views/shared/Shared";
 import Project from "./views/project/Project";
 import Calendar from "./views/task/Calendar"
+import Story from "./views/story/Story";
 
 
 export const Routers = [
@@ -33,6 +34,14 @@ export const Routers = [
         title: "日程",
         icon: "el-icon-date",
         component: Calendar
+    },
+    {
+
+        path: '/story',
+        name: "story",
+        title: "故事",
+        icon: "el-icon-date",
+        component: Story
     },
     {
         path: '/login',
