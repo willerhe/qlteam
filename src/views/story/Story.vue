@@ -1,14 +1,9 @@
 <template>
     <div>
-        <h1>故事卡</h1>
         <el-row>
-            <el-col :span="4" v-for="i in 4">
+            <el-col :span="4" v-for="i in 4" style="padding: 7px">
                 <draggable>
-                    <el-card class="box-card">
-                        <div v-for="o in 4" :key="o" class="text item">
-                            {{'任務 ' + o }}
-                        </div>
-                    </el-card>
+                    <story-item></story-item>
                 </draggable>
 
             </el-col>
@@ -18,10 +13,11 @@
 
 <script>
     import draggable from 'vuedraggable'
+    import StoryItem from "../../components/StoryItem";
 
     export default {
         name: "Story",
-        components: {draggable}
+        components: {draggable, StoryItem}
     }
 </script>
 

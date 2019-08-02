@@ -1,11 +1,11 @@
 <template>
     <div>
         <el-row>
-            <el-col :span="6" style="height: 80vh" v-for="task in tasks">
-                <p>{{task.label}}</p>
+            <el-col :span="6" style="height: 80vh;padding: 10px" v-for="task in tasks">
+                <p align="center">{{task.label}}</p>
                 <draggable :group="group.inbox" :list="task.data" @change="change">
                     <transition-group>
-                        <li v-for="(i,index) in task.data" style="margin-bottom: 10px" :key="'k'+index">{{i.name}}</li>
+                        <task-item :key="'k'+index" v-for="(i,index) in task.data" style="margin-bottom: 10px"></task-item>
                     </transition-group>
                 </draggable>
 
