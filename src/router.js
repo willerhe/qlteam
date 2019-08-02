@@ -26,6 +26,13 @@ export const Routers = [
         title: "任务",
         icon: "el-icon-menu",
         component: Task
+    }, {
+
+        path: '/story',
+        name: "story",
+        title: "故事",
+        icon: "el-icon-date",
+        component: Story
     },
     {
 
@@ -35,14 +42,7 @@ export const Routers = [
         icon: "el-icon-date",
         component: Calendar
     },
-    {
 
-        path: '/story',
-        name: "story",
-        title: "故事",
-        icon: "el-icon-date",
-        component: Story
-    },
     {
         path: '/login',
         name: "login",
