@@ -4,12 +4,15 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import router from "./router";
-
-Vue.use(ElementUI)
-
 import fullCalendar from 'vue-fullcalendar'
 
+import api from "./api/api";
+
+Vue.use(ElementUI)
 Vue.component('full-calendar', fullCalendar)
+
+// 全局加载api
+Vue.prototype.$api = api
 
 Vue.config.productionTip = false
 

@@ -17,7 +17,13 @@
 
     export default {
         name: "Story",
-        components: {draggable, StoryItem}
+        components: {draggable, StoryItem},
+        mounted() {
+
+            this.$api.story.list().then(res => {
+
+            })
+        }
     }
 </script>
 
