@@ -7,7 +7,7 @@
                 <span>用户故事</span>
             </div>
             <div>
-                <p>{{item.content}}</p>
+                <p>{{item.describe}}</p>
             </div>
         </el-card>
 
@@ -18,9 +18,13 @@
 <script>
     export default {
         name: "StoryItem",
+        props: {
+            item: {
+                type: Object
+            }
+        },
         data() {
             return {
-                item: {content: "作为一名网站管理员，我要统计每天有多少人访问了我的网站，以便我的赞助商了解我的网站会给他们带来什么收益。"}
             }
         }
     }
