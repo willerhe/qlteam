@@ -19,7 +19,6 @@
         name: "Story",
         components: {draggable, StoryItem},
         mounted() {
-
             this.$api.story.list().then(res => {
 
             })

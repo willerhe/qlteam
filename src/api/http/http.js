@@ -1,7 +1,9 @@
 import axios from 'axios'
 import el from 'element-ui'
 
-let http = axios.create()
+const http = axios.create({
+    baseURL: "http://localhost:9900/api"
+})
 
 
 // 添加请求拦截器

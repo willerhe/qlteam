@@ -6,7 +6,7 @@ let api = {
     task: http.generalApi("task", "tasks")
 }
 
-
+api.http = http
 export default api
 
 
