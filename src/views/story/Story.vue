@@ -14,20 +14,20 @@
 <script>
     import draggable from 'vuedraggable'
     import StoryItem from "../../components/StoryItem";
-    import Base from "../../components/Base";
-    import Pager from "../../components/Pager";
+    import AudoLoadPager from "../../components/AutoLoadPager";
 
     export default {
         name: "Story",
-        extends: Pager,
+        extends: AudoLoadPager,
+        inject: ['api'],
         components: {draggable, StoryItem},
+        data() {
+            return {
+                api: this.$api.story
+            }
+        },
+        methods: {},
         mounted() {
-            this.$api.story.list().then(res => {
-                this.items = res.data
-                console.log(this.items)
-            })
-
-            console.log("pager", this.pager)
         }
     }
 </script>

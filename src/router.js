@@ -34,6 +34,14 @@ export const Routers = [
         icon: "el-icon-date",
         component: Story
     },
+
+    {
+        path: '/project',
+        name: "project",
+        title: "项目",
+        icon: "el-icon-files",
+        component: Project
+    },
     {
 
         path: '/calendar',
@@ -56,13 +64,6 @@ export const Routers = [
         title: "文档",
         icon: "el-icon-folder",
         component: Document
-    },
-    {
-        path: '/project',
-        name: "project",
-        title: "项目",
-        icon: "el-icon-files",
-        component: Project
     },
     {
         path: '/shared',
