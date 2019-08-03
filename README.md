@@ -11,6 +11,9 @@ qlteam 是一个为小型团队轻量级的项目管理工具,qlteam 是eXtreme 
 
 ![image](https://github.com/willerhe/qlteam/blob/master/doc/daily.png)
 
+##plain
+已配置好的模块： 网络访问模块
+
 
 ## Project setup
 ```
