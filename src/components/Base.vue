@@ -8,7 +8,7 @@
         data() {
             return {
                 item: Object,
-                items: Array
+                items: []
             }
         }
     }

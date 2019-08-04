@@ -10,16 +10,23 @@
         extends: Pager,
         provide: function () {
             return {
-                api: Object
+                context: {}
             }
         },
         data() {
-            return {}
+            return {
+                context: {}
+            }
         },
         mounted() {
-            this.api.list().then(res => {
+            console.log(this.context)
+            this.context.api.list().then(res => {
                 this.items = res.data
-                console.log("查询结果", this.items)
+                // 执行callback
+                if (this.context.callback) {
+                    this.context.callback()
+                }
+                // console.log("查询结果", this.items)
             })
 
 

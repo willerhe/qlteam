@@ -19,10 +19,12 @@
     export default {
         name: "Story",
         extends: AudoLoadPager,
-        inject: ['api'],
+
         components: {draggable, StoryItem},
         data() {
             return {
+                inject: ['context'],
+                context: this,
                 api: this.$api.story
             }
         },
