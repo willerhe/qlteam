@@ -4,20 +4,16 @@
             <el-col :span="6" style="height: 80vh;padding: 10px;" v-for="task in tasks">
                 <p align="center">{{task.label}}</p>
                 <draggable :group="group.inbox" :list="task.data" @change="change"
-                           style="border: 1px solid red;padding: 5px;min-height: 20px">
+                           style="padding: 5px;min-height: 20px">
                     <transition-group>
                         <task-item :key="'k'+index" v-for="(i,index) in task.data"
-                                   style="margin-bottom: 10px"></task-item>
+                                   style="margin-bottom: 10px" :item="i"></task-item>
                     </transition-group>
                 </draggable>
 
             </el-col>
 
         </el-row>
-
-        <draggable>
-            <task-item></task-item>
-        </draggable>
     </div>
 </template>
 
@@ -48,9 +44,9 @@
                     // 收件箱
                     {name: "inbox", data: [], label: "收件箱"},
                     // 今天要做
-                    {name: "todo", data: [{name: 7}, {name: 9}], label: "今天要做"},
+                    {name: "todo", data: [], label: "今天要做"},
                     // 下一步要做
-                    {name: "nextStep", data: [{name: 3}, {name: 4}, {name: 5}], label: "下一步要做"},
+                    {name: "nextStep", data: [], label: "下一步要做"},
                     // 以后再做
                     {name: "later", data: [], label: "以后再做"}
                 ]

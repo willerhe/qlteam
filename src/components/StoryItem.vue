@@ -1,9 +1,7 @@
 <template>
     <div>
-
-
-        <el-card class="box-card">
-            <div slot="header" class="clearfix">
+        <el-card class="box-card"  style="cursor: pointer;height: 225px;overflow: hidden;margin-left: 7px" shadow="hover" >
+            <div slot="header">
                 <span>用户故事</span>
             </div>
             <div>
