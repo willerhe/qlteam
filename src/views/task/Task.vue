@@ -1,18 +1,21 @@
 <template>
     <div>
         <el-row>
-            <el-col :span="6" style="height: 80vh;padding: 10px;" v-for="task in tasks">
-                <p align="center">{{task.label}}</p>
-                <draggable :group="group.inbox" :list="task.data" @change="change"
-                           style="padding: 5px;min-height: 20px">
-                    <transition-group>
-                        <task-item :key="'k'+index" v-for="(i,index) in task.data"
-                                   style="margin-bottom: 10px" :item="i"></task-item>
-                    </transition-group>
-                </draggable>
+            <div style="margin: 7px">
+                <el-col :span="6" style="height: 80vh;padding: 10px;background: #ccc;" v-for="task in tasks">
 
-            </el-col>
+                    <p align="center">{{task.label}}</p>
+                    <draggable :group="group.inbox" :list="task.data" @change="change"
+                               style="padding: 5px;min-height: 20px;">
+                        <transition-group>
+                            <task-item :key="'k'+index" v-for="(i,index) in task.data"
+                                       style="margin-bottom: 10px" :item="i"></task-item>
+                        </transition-group>
+                    </draggable>
 
+
+                </el-col>
+            </div>
         </el-row>
     </div>
 </template>
@@ -88,26 +91,7 @@
 </script>
 
 <style scoped>
-    .text {
-        font-size: 14px;
+    .el-main {
+        padding: 0px;
     }
-
-    .item {
-        margin-bottom: 18px;
-    }
-
-    .clearfix:before,
-    .clearfix:after {
-        display: table;
-        content: "";
-    }
-
-    .clearfix:after {
-        clear: both
-    }
-
-    .box-card {
-        width: 480px;
-    }
-
 </style>
