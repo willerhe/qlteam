@@ -1,8 +1,7 @@
 <template>
     <div>
-        <el-row>
-            <div style="margin: 7px">
-                <el-col :span="6" style="height: 80vh;padding: 10px;background: #ccc;" v-for="task in tasks">
+            <div style="margin: 7px;display: flex">
+                <div :span="6" style="height: 80vh;margin: 10px;width:25%; background: #fff;" v-for="task in tasks">
 
                     <p align="center">{{task.label}}</p>
                     <draggable :group="group.inbox" :list="task.data" @change="change"
@@ -13,10 +12,8 @@
                         </transition-group>
                     </draggable>
 
-
-                </el-col>
+                </div>
             </div>
-        </el-row>
     </div>
 </template>
 
