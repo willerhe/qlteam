@@ -1,19 +1,26 @@
 <template>
     <div>
-            <div style="margin: 7px;display: flex">
-                <div :span="6" style="height: 80vh;margin: 10px;width:25%; background: #fff;" v-for="task in tasks">
+        <div style="margin: 7px;display: flex">
+            <div :span="6" style="display: flex;flex-direction:column;margin: 10px;width:25%; background: #fff;"
+                 v-for="task in tasks">
 
-                    <p align="center">{{task.label}}</p>
+                <p align="center">{{task.label}}</p>
+                <div style="margin: 3px;background: #EEEEEE;" >
                     <draggable :group="group.inbox" :list="task.data" @change="change"
                                style="padding: 5px;min-height: 20px;">
                         <transition-group>
                             <task-item :key="'k'+index" v-for="(i,index) in task.data"
-                                       style="margin-bottom: 10px" :item="i"></task-item>
+                                       style="" :item="i"></task-item>
                         </transition-group>
                     </draggable>
-
                 </div>
+                <div style="display: flex;justify-content: center; height: 40px;align-items: center;cursor: pointer">
+                    <span class="el-icon-plus" style="font-size: larger;background: white;"></span>
+                    <span style="margin-left: 7px;color: #818181;font-size: 12px">添加新任务</span>
+                </div>
+
             </div>
+        </div>
     </div>
 </template>
 

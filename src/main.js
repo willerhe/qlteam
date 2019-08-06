@@ -7,6 +7,7 @@ import router from "./router";
 import fullCalendar from 'vue-fullcalendar'
 
 import api from "./api/api";
+import filters from "./filter";
 
 Vue.use(ElementUI)
 Vue.component('full-calendar', fullCalendar)
@@ -15,6 +16,9 @@ Vue.component('full-calendar', fullCalendar)
 Vue.prototype.$api = api
 
 Vue.config.productionTip = false
+
+Vue.filter("normalTime",filters.formatTime)
+
 
 
 new Vue({

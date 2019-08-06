@@ -13,7 +13,7 @@
 
             <div v-for="it in items" @click="scanItem(it)">
                 <el-col :span="4">
-                    <draggable>
+                    <draggable  @start="drag=true">
                         <story-item :item="it"></story-item>
                     </draggable>
 
