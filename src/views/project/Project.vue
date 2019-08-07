@@ -1,12 +1,19 @@
 <template>
-    <div>
-        <h1>project</h1>
-    </div>
+    <el-container>
+        <el-aside width="200px">
+            <project-side-bar></project-side-bar>
+        </el-aside>
+        <el-main style="background-color: white;margin-left: 7px">
+
+        </el-main>
+    </el-container>
 </template>
 
 <script>
+    import ProjectSideBar from "../../components/ProjectSideBar";
     export default {
-        name: "Project"
+        name: "Project",
+        components:{ProjectSideBar}
     }
 </script>
 

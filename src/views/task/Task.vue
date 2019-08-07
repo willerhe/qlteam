@@ -1,23 +1,21 @@
 <template>
-    <div>
-        <div style="margin: 7px;display: flex">
-            <div :span="6" style="display: flex;flex-direction:column;margin: 10px;width:25%; background: #fff;"
-                 v-for="task in tasks">
+    <div class="task">
+        <div class="task-1"
+             v-for="task in tasks">
 
-                <!--todo box自适应高度-->
-                <p align="center">{{task.label}}</p>
-                <div style="margin: 3px;background: #EEEEEE;display: flex;flex-direction: column">
-                    <draggable :group="group.inbox" :list="task.data" @change="change"
-                               style="padding: 5px;">
-                        <task-item :key="'k'+index" v-for="(i,index) in task.data" :item="i"></task-item>
-                    </draggable>
-                </div>
-                <div class="add-item">
-                    <span class="el-icon-plus add-item-1"></span>
-                    <span class="add-item-2">添加新任务</span>
-                </div>
-
+            <!--todo box自适应高度-->
+            <p align="center">{{task.label}}</p>
+            <div class="task-content">
+                <draggable :group="group.inbox" :list="task.data" @change="change"
+                           style="padding: 5px;">
+                    <task-item :key="'k'+index" v-for="(i,index) in task.data" :item="i"></task-item>
+                </draggable>
             </div>
+            <div class="add-item">
+                <span class="el-icon-plus add-item-1"></span>
+                <span class="add-item-2">添加新任务</span>
+            </div>
+
         </div>
     </div>
 </template>
@@ -114,5 +112,25 @@
         margin-left: 7px;
         color: #818181;
         font-size: 12px
+    }
+
+    .task {
+        margin: 7px;
+        display: flex
+    }
+
+    .task-1 {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        width: 25%;
+        background: #fff;
+    }
+
+    .task-content {
+        margin: 3px;
+        background: #EEEEEE;
+        display: flex;
+        flex-direction: column
     }
 </style>

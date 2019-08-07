@@ -2,7 +2,7 @@
     <div>
         <el-container style="height: 100vh">
             <el-container>
-                <el-aside width="180px">
+                <el-aside width="80px">
                     <menu-bar></menu-bar>
                 </el-aside>
                 <el-main>

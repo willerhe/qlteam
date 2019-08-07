@@ -9,7 +9,8 @@
                 </el-breadcrumb>
             </el-col>
         </el-row>
-        <el-row>
+
+        <el-row style="background-color: white;padding: 7px">
             <el-col :span="4" style="text-align: center" v-for="o in 6">
                 <span class="document el-icon-folder"></span>
                 <p style="margin: 0px" align="center">小东门智能安防</p>
@@ -34,7 +35,6 @@
 
 <style scoped>
     .document-manager {
-        background: #ccc;
         padding: 5px;
     }
 
