@@ -42,6 +42,7 @@
                 this.rememberMe()
             },
 
+            // todo  当页面有自路由的时候怎么记住  http://localhost:8080/#/project/1
             rememberMe() {
                 this.activeItem = this.$route.fullPath
             },

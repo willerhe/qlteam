@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <h1>Project Detail</h1>
+    <div style="background-color: #EEEEEE;">
+
     </div>
 </template>
 

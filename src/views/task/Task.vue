@@ -91,9 +91,7 @@
 </script>
 
 <style scoped>
-    .el-main {
-        padding: 0px;
-    }
+
 
     .add-item {
         display: flex;

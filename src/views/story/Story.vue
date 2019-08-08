@@ -4,7 +4,7 @@
             <div @click="formVisible = true">
                 <el-col :span="4">
                     <el-card class="box-card" shadow="hover"
-                             style="background: #f4f4f4;padding: 7px;height: 208px;border: 1px #939393 dashed;cursor: pointer"
+                             style="background: white;padding: 7px;height: 208px;border: 1px #939393 dashed;cursor: pointer"
                              align="center">
                         <span class="el-icon-plus" style="font-size: 160px;color: #c4c4c4"></span>
                     </el-card>
