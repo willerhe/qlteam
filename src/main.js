@@ -19,6 +19,10 @@ Vue.config.productionTip = false
 
 Vue.filter("normalTime",filters.formatTime)
 
+import EVueContextmenu from 'e-vue-contextmenu'
+Vue.use(EVueContextmenu)
+
+
 
 
 new Vue({
