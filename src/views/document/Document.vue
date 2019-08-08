@@ -10,14 +10,12 @@
             </el-col>
         </el-row>
 
-        <el-row style="background-color: white;padding: 7px;height: 90vh;">
-            <el-col :span="4" style="text-align: center" v-for="o in 6">
+        <div style="background-color: white;padding: 7px;height: 90vh;;display: inline-flex;flex-direction: row;width: 100%">
+            <div style="display: flex;align-items:center;flex-direction: column;margin: 21px"  v-for="o in 6">
                 <span class="document el-icon-folder"></span>
-                <p style="margin: 0px" align="center">小东门智能安防</p>
-            </el-col>
-
-        </el-row>
-
+                <p  style="margin: 0px;font-size: 14px;color:#818181">小东门智能安防</p>
+            </div>
+        </div>
 
     </div>
 </template>
