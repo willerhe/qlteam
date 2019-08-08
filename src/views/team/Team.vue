@@ -1,6 +1,7 @@
 <template>
     <div>
-        <h1>SharedDocument</h1>
+        <h1>人员管理</h1>
+        <h1>团建活动</h1>
     </div>
 </template>
 

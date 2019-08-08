@@ -7,7 +7,7 @@ import Task from "./views/task/Task";
 import Login from "./views/login/Login";
 import Document from "./views/document/Document";
 import Setting from "./views/setting/Setting";
-import Shared from "./views/shared/Shared";
+import Team from "./views/team/Team";
 import Project from "./views/project/Project";
 import Calendar from "./views/task/Calendar"
 import Story from "./views/story/Story";
@@ -78,18 +78,20 @@ export const Routers = [
         component: Document
     },
     {
-        path: '/shared',
-        name: "shared",
-        title: "分享",
-        icon: "el-icon-share",
-        component: Shared
+        path: '/team',
+        name: "team",
+        title: "团队",
+        icon: "el-icon-wind-power",
+        component: Team
     },
     {
         path: '/setting',
         name: "setting",
         title: "设置",
         icon: "el-icon-setting",
-        component: Setting
+        component: Setting,
+        //todo 没想好 暂时隐藏
+        hidden:true,
     },
 
 
