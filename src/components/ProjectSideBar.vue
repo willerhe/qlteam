@@ -1,13 +1,13 @@
 <template>
     <div>
         <el-menu style="height: 100vh"
-                 :default-active="activeItem"
+                 :default-active="'p'+activeItem+1"
                  text-color="#545c64"
                  active-text-color="#ffd04b">
-            <router-link :to="item.path" style="text-decoration: none" v-for="(item,i) in menus" :key="item.path">
-                <el-menu-item :index="item.path">
-                    <i :class="item.icon"></i>
-                    <span slot="title">{{item.title}}</span>
+            <router-link :to="projectUrl+item.id" style="text-decoration: none" v-for="(item,i) in menus"
+                         :key="item.id">
+                <el-menu-item :index="'f'+item.id">
+                    <span slot="title">{{item.name}}</span>
                 </el-menu-item>
             </router-link>
 
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import {Routers} from '../router'
+
 
     export default {
         name: "ProjectSideBar",
@@ -32,7 +32,8 @@
         data() {
             return {
                 activeItem: "/task",
-                projects: [],
+                projectUrl: "/project/",
+                projects: [{id: 1, name: "项目1"}, {id: 2, name: "项目2"}],
                 menus: []
             }
         },
@@ -42,33 +43,16 @@
             },
 
             rememberMe() {
-                this.activeItem = this.$route.fullPath
+                this.activeItem = "f" + this.$route.params.id
             },
             loadMenus() {
-                for (let i = 0; i < Routers.length; i++) {
-                    let r = Routers[i]
-                    if (!r.hidden) {
-                        this.menus.push(r)
-                    }
-                }
-
-                // 找到activeIndex
-                console.log("url changed")
+                this.menus = this.projects
             },
-            mockData() {
-                // for (let i = 0;i < )
-                //     this.projects.push({id: i, name: "项目" + i})
-                // }
-                // console.log("this.projects",this.projects)
-            }
+
 
         },
         mounted() {
             this.loadMenus()
-            this.mockData()
-
-
-            // this.activeIndex = window.localStorage.getItem("activeIndex") || 0
 
 
         }

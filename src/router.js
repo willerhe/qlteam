@@ -11,6 +11,7 @@ import Shared from "./views/shared/Shared";
 import Project from "./views/project/Project";
 import Calendar from "./views/task/Calendar"
 import Story from "./views/story/Story";
+import ProjectDetail from "./views/project/ProjectDetail";
 
 
 export const Routers = [
@@ -40,7 +41,14 @@ export const Routers = [
         name: "project",
         title: "项目",
         icon: "el-icon-files",
-        component: Project
+        component: Project,
+        children: [
+            {
+                path: '/project/:id',
+                name: "project.detail",
+                component: ProjectDetail
+            }
+        ]
     },
     {
 

@@ -4,7 +4,7 @@
             <project-side-bar></project-side-bar>
         </el-aside>
         <el-main style="background-color: white;margin-left: 7px">
-
+            <router-view></router-view>
         </el-main>
     </el-container>
 </template>
