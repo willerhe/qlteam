@@ -2,7 +2,6 @@
     <div class="task">
         <div class="task-1"
              v-for="task in tasks">
-            <!--todo box自适应高度-->
             <p align="center">{{task.label}}</p>
             <div class="task-content">
                 <draggable :group="group.inbox" :list="task.data" @change="change"

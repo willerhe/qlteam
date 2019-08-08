@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <!--  todo 放在router-view中      -->
         <side-layout></side-layout>
     </div>
 </template>
@@ -23,7 +24,8 @@
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
     }
-    body{
+
+    body {
         margin: 0px;
         padding: 0px;
         background: #EEEEEE;
