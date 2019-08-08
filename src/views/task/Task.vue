@@ -2,7 +2,6 @@
     <div class="task">
         <div class="task-1"
              v-for="task in tasks">
-
             <!--todo box自适应高度-->
             <p align="center">{{task.label}}</p>
             <div class="task-content">
@@ -15,7 +14,6 @@
                 <span class="el-icon-plus add-item-1"></span>
                 <span class="add-item-2">添加新任务</span>
             </div>
-
         </div>
     </div>
 </template>
@@ -113,15 +111,19 @@
     }
 
     .task {
-        margin: 7px;
-        display: flex
+        display: block;
+        overflow-wrap: unset;
+
+
     }
 
+    /*todo 怎么把width 设置成25%  盒子还能够在一行展示*/
     .task-1 {
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
-        margin: 10px;
-        width: 25%;
+        justify-content: flex-start;
+        width: 24%;
+        margin: 7px;
         background: #fff;
     }
 
