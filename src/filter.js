@@ -26,11 +26,11 @@ let filters = {
         if (diff < 30 && diff > 0) {
             return 'just'
         } else if (diff < 3600 && diff > 0) { // less 1 hour
-            return Math.ceil(diff / 60) + 'minutes ago'
+            return Math.ceil(diff / 60) + ' 分钟前'
         } else if (diff < 3600 * 24 && diff > 0) {
-            return Math.ceil(diff / 3600) + 'hours ago'
+            return Math.ceil(diff / 3600) + ' 小时前'
         } else if (diff < 3600 * 24 * 2 && diff > 0) {
-            return '1 days ago'
+            return '昨天'
         }
         return d.Format(fm)
     }

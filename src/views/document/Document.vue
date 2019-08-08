@@ -19,20 +19,20 @@
         </div>
 
         <e-vue-contextmenu ref="ctxshow" id="contextStyle" @ctx-show="show" @ctx-hide="hide">
-            <div style="padding: 7px">
-                <div style="display: flex;">
+            <div style="padding: 7px" class="rightmenu">
+                <div>
                     <span class="el-icon-document"></span>
                     <span style="margin-left: 10px">打开</span>
                 </div>
-                <div style="display: flex;">
+                <div>
                     <span class="el-icon-copy-document"></span>
                     <span style="margin-left: 10px">复制</span>
                 </div>
-                <div style="display: flex;">
+                <div>
                     <span class="el-icon-document-delete"></span>
                     <span style="margin-left: 10px">删除</span>
                 </div>
-                <div style="display: flex;">
+                <div>
                     <span class="el-icon-refresh-left"></span>
                     <span style="margin-left: 10px">重命名</span>
                 </div>
@@ -66,5 +66,15 @@
 
     .document {
         font-size: 50px;
+    }
+
+    .rightmenu div {
+        margin-bottom: 7px;
+        cursor: pointer;
+        display: flex;
+    }
+
+    .rightmenu div :hover {
+        background: #EEEEEE;
     }
 </style>

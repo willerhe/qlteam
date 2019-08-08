@@ -6,14 +6,24 @@
                  background-color="#545c64"
                  text-color="#fff"
                  active-text-color="#ffd04b">
-            <router-link :to="item.path" style="text-decoration: none" v-for="(item,i) in menus" :key="item.path">
-                <el-menu-item :index="item.path">
-                    <i :class="item.icon"></i>
-                    <span slot="title">{{item.title}}</span>
-                </el-menu-item>
-            </router-link>
+            <div>
+                <router-link :to="item.path" style="text-decoration: none" v-for="(item,i) in menus"
+                             :key="item.path">
+                    <el-menu-item :index="item.path">
+                        <i :class="item.icon"></i>
+                        <span slot="title">{{item.title}}</span>
+                    </el-menu-item>
+                </router-link>
+            </div>
+
+            <el-menu-item>
+                <i class="el-icon-switch-button" style="color:#ff6e32"></i>
+                <span slot="title">退出</span>
+            </el-menu-item>
 
         </el-menu>
+
+
     </div>
 
 
@@ -26,8 +36,8 @@
         name: "MenuBar",
         watch: {
             $route: {
-                handler:'routeChange',
-                immediate:true
+                handler: 'routeChange',
+                immediate: true
 
             }
         },
@@ -38,7 +48,7 @@
             }
         },
         methods: {
-            routeChange(to,from){
+            routeChange(to, from) {
                 this.rememberMe()
             },
 
