@@ -22,7 +22,7 @@
             <div style="padding: 7px">
                 <div style="display: flex;">
                     <span class="el-icon-document"></span>
-                    <span style="margin-left: 10px" @click.stop="open()">打开</span>
+                    <span style="margin-left: 10px">打开</span>
                 </div>
                 <div style="display: flex;">
                     <span class="el-icon-copy-document"></span>
