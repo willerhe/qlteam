@@ -1,6 +1,3 @@
-
-
-
 <template>
     <div>
         <el-menu style="height: 100vh"
@@ -27,19 +24,20 @@
         name: "ProjectSideBar",
         watch: {
             $route: {
-                handler:'routeChange',
-                immediate:true
+                handler: 'routeChange',
+                immediate: true
 
             }
         },
         data() {
             return {
                 activeItem: "/task",
+                projects: [],
                 menus: []
             }
         },
         methods: {
-            routeChange(to,from){
+            routeChange(to, from) {
                 this.rememberMe()
             },
 
@@ -56,11 +54,18 @@
 
                 // 找到activeIndex
                 console.log("url changed")
+            },
+            mockData() {
+                // for (let i = 0;i < )
+                //     this.projects.push({id: i, name: "项目" + i})
+                // }
+                // console.log("this.projects",this.projects)
             }
 
         },
         mounted() {
             this.loadMenus()
+            this.mockData()
 
 
             // this.activeIndex = window.localStorage.getItem("activeIndex") || 0
