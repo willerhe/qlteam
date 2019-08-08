@@ -22,18 +22,18 @@
             <div style="padding: 7px">
                 <div style="display: flex;">
                     <span class="el-icon-document"></span>
-                    <span style="margin-left: 10px">打开</span>
+                    <span style="margin-left: 10px" @click.stop="open()">打开</span>
                 </div>
                 <div style="display: flex;">
-                    <span class="el-icon-document"></span>
+                    <span class="el-icon-copy-document"></span>
                     <span style="margin-left: 10px">复制</span>
                 </div>
                 <div style="display: flex;">
-                    <span class="el-icon-document"></span>
+                    <span class="el-icon-document-delete"></span>
                     <span style="margin-left: 10px">删除</span>
                 </div>
                 <div style="display: flex;">
-                    <span class="el-icon-document"></span>
+                    <span class="el-icon-refresh-left"></span>
                     <span style="margin-left: 10px">重命名</span>
                 </div>
             </div>
@@ -48,17 +48,12 @@
         name: "Document",
         components: {},
         methods: {
-
             show(data) {
-                console.log('菜单显示了')
+                console.log('菜单显示了', data)
             },
             hide(data) {
                 console.log('菜单隐藏了')
-            },
-            handlerSql() {
-                // 自定义事件
             }
-
         }
     }
 </script>
