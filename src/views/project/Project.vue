@@ -1,9 +1,7 @@
 <template>
-    <el-container>
-        <el-aside width="200px">
-            <project-side-bar></project-side-bar>
-        </el-aside>
-        <el-main style="background-color: white;margin-left: 3px;padding: 7px">
+    <div style="display: flex">
+        <project-side-bar style="width: 200px;height: 100vh"></project-side-bar>
+        <div style="background-color: white;margin-left: 3px;padding: 7px;width: 100%">
             <el-tabs v-model="activeTab">
                 <el-tab-pane label="任务视图" name="task">
                     <project-task></project-task>
@@ -12,8 +10,8 @@
                     <project-story></project-story>
                 </el-tab-pane>
             </el-tabs>
-        </el-main>
-    </el-container>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -25,9 +23,9 @@
     export default {
         name: "Project",
         components: {ProjectSideBar, ProjectTask, ProjectStory},
-        data(){
-            return{
-                activeTab:"task"
+        data() {
+            return {
+                activeTab: "task"
             }
         }
     }

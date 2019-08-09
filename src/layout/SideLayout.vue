@@ -1,18 +1,7 @@
 <template>
-    <div>
-        <!--  todo 添加路由动画    -->
-        <el-container style="height: 100vh">
-            <el-container>
-                <el-aside width="80px">
-                    <menu-bar></menu-bar>
-                </el-aside>
-                <el-main>
-
-                    <router-view></router-view>
-
-                </el-main>
-            </el-container>
-        </el-container>
+    <div style="display: flex;width: 100vw">
+        <menu-bar style="width: 80px"></menu-bar>
+        <router-view style="width: 100%"></router-view>
     </div>
 </template>
 

@@ -1,8 +1,7 @@
 <template>
     <div>
-        <p>todo change ui</p>
         <el-row>
-            <div @click="formVisible = true">
+            <div @click="formVisible = true" >
                 <el-col :span="4">
                     <el-card class="box-card" shadow="hover"
                              style="background: white;padding: 7px;height: 208px;border: 1px #939393 dashed;cursor: pointer"
@@ -76,5 +75,7 @@
 </script>
 
 <style scoped>
+
+
 
 </style>

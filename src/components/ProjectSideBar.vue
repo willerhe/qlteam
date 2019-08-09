@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-menu style="height: 90vh"
+        <el-menu style="height: 100vh"
                  :default-active="'p'+activeItem+1"
                  text-color="#545c64"
                  active-text-color="#ffd04b">
