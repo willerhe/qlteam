@@ -1,25 +1,20 @@
 <template>
-    <div>
-        <el-row>
-            <div @click="formVisible = true" >
-                <el-col :span="4">
-                    <el-card class="box-card" shadow="hover"
-                             style="background: white;padding: 7px;height: 208px;border: 1px #939393 dashed;cursor: pointer"
-                             align="center">
-                        <span class="el-icon-plus" style="font-size: 160px;color: #c4c4c4"></span>
-                    </el-card>
-                </el-col>
-            </div>
+    <div style="padding: 7px;height: 100vh;background: white">
+        <div @click="formVisible = true"
+             style="display: flex;cursor:pointer;justify-content: center;align-items: center;
+             width: 100px;height: 100px;border: 1px dotted #ccc;">
+            <span class="el-icon-plus" style="font-size: 80px;color: #c4c4c4"></span>
+        </div>
 
-            <div v-for="it in items" @click="scanItem(it)">
-                <el-col :span="4">
-                    <draggable  @start="drag=true">
-                        <story-item :item="it"></story-item>
-                    </draggable>
+        <!--            <div v-for="it in items" @click="scanItem(it)">-->
+        <!--                <el-col :span="4">-->
+        <!--                    <draggable @start="drag=true">-->
+        <!--                        <story-item :item="it"></story-item>-->
+        <!--                    </draggable>-->
 
-                </el-col>
-            </div>
-        </el-row>
+        <!--                </el-col>-->
+        <!--            </div>-->
+
 
         <el-dialog
                 :title="formItem.id?'更改':'添加'"
@@ -75,7 +70,6 @@
 </script>
 
 <style scoped>
-
 
 
 </style>
