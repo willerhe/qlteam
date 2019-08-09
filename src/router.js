@@ -11,15 +11,9 @@ import Team from "./views/team/Team";
 import Project from "./views/project/Project";
 import Calendar from "./views/task/Calendar"
 import Story from "./views/story/Story";
-import ProjectStory from "./views/project/ProjectStory";
+import SideLayout from "./layout/SideLayout";
 
-
-export const Routers = [
-    {
-        path: '/',
-        component: Task,
-        hidden: true,
-    },
+export const SideMenu = [
     {
 
         path: '/task',
@@ -51,7 +45,7 @@ export const Routers = [
         title: "项目",
         icon: "el-icon-files",
         component: Project,
-        hidden:true
+        hidden: true
     },
     {
 
@@ -91,8 +85,18 @@ export const Routers = [
         icon: "el-icon-setting",
         component: Setting,
         //todo 没想好 暂时隐藏
-        hidden:true,
+        hidden: true,
     },
+
+]
+
+export const Routers = [
+    {
+        path: '/ql',
+        component: SideLayout,
+        name: "",
+        children: SideMenu
+    }
 
 
 ]

@@ -2,7 +2,7 @@ import axios from 'axios'
 import el from 'element-ui'
 
 const http = axios.create({
-    baseURL: "http://localhost:9900/api"
+    baseURL: "http://localhost:9900/api/v1"
 })
 
 

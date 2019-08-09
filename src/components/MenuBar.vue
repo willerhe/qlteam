@@ -16,7 +16,7 @@
                 </router-link>
             </div>
 
-            <el-menu-item>
+            <el-menu-item @click="logout">
                 <i class="el-icon-switch-button" style="color:#ff6e32"></i>
                 <span slot="title">退出</span>
             </el-menu-item>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-    import {Routers} from '../router'
+    import {SideMenu} from '../router'
 
     export default {
         name: "MenuBar",
@@ -48,17 +48,23 @@
             }
         },
         methods: {
+            logout() {
+                this.$confirm('确认退出吗?', '退出', {
+                    type: 'warning'
+                }).then(() => {
+                        console.log("退出登录")
+                    })
+            },
             routeChange(to, from) {
                 this.rememberMe()
             },
-
             // todo  当页面有自路由的时候怎么记住  http://localhost:8080/#/project/1
             rememberMe() {
                 this.activeItem = this.$route.fullPath
             },
             loadMenus() {
-                for (let i = 0; i < Routers.length; i++) {
-                    let r = Routers[i]
+                for (let i = 0; i < SideMenu.length; i++) {
+                    let r = SideMenu[i]
                     if (!r.hidden) {
                         this.menus.push(r)
                     }

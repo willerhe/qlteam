@@ -1,19 +1,14 @@
 <template>
     <div id="app">
         <!--  todo 放在router-view中      -->
-        <side-layout></side-layout>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import MenuBar from "./components/MenuBar";
-    import StatusBar from "./components/StatusBar";
-    import SideLayout from "./layout/SideLayout";
-
-
     export default {
         name: 'app',
-        components: {MenuBar, StatusBar, SideLayout}
+        components: {}
     }
 </script>
 
