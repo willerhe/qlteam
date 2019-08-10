@@ -25,6 +25,7 @@ Vue.use(EVueContextmenu)
 
 
 
+
 new Vue({
     el: '#app',
     router,

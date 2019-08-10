@@ -12,6 +12,7 @@ import Project from "./views/project/Project";
 import Calendar from "./views/task/Calendar"
 import Story from "./views/story/Story";
 import SideLayout from "./layout/SideLayout";
+import BlankLayout from "./layout/BlankLayout";
 
 export const SideMenu = [
     {
@@ -57,14 +58,6 @@ export const SideMenu = [
     },
 
     {
-        path: '/login',
-        name: "login",
-        title: "登录",
-        component: Login,
-
-        hidden: true
-    },
-    {
         path: '/document',
         name: "document",
         title: "文档",
@@ -92,12 +85,21 @@ export const SideMenu = [
 
 export const Routers = [
     {
-        path: '/ql',
+        path: '',
         component: SideLayout,
         name: "",
         children: SideMenu
-    }
+    }, {
+        path: '',
+        component: BlankLayout,
+        name: "空白布局",
+        children: [{
+            path: 'login',
+            component: Login,
+            name: "登录",
 
+        }]
+    }
 
 ]
 

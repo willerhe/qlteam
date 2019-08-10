@@ -1,4 +1,5 @@
 <template>
+    <transition  name="el-zoom-in-center">
     <div class="task">
         <div class="task-1"
              v-for="task in tasks">
@@ -15,6 +16,7 @@
             </div>
         </div>
     </div>
+    </transition>
 </template>
 
 <script>

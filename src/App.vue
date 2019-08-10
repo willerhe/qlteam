@@ -1,14 +1,18 @@
 <template>
     <div id="app">
         <!--  todo 放在router-view中      -->
-        <router-view></router-view>
+            <router-view></router-view>
     </div>
 </template>
 
 <script>
     export default {
         name: 'app',
-        components: {}
+        components: {},
+        mounted() {
+            // todo 模拟权限验证   必须登录才能操作
+            this.$router.push("/login")
+        }
     }
 </script>
 
