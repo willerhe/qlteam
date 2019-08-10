@@ -6,14 +6,14 @@
                     placeholder="账号"
                     v-model="user.account"
                     style="margin-bottom: 14px"
-                    prefix-icon="el-icon-date">
+                    prefix-icon="el-icon-user">
             </el-input>
             <el-input
                     placeholder="密码"
                     show-password
                     v-model="user.password"
                     style="margin-bottom: 14px"
-                    prefix-icon="el-icon-date">
+                    prefix-icon="el-icon-lock">
             </el-input>
             <el-button type="primary" @click="login" class="full">登录</el-button>
 
