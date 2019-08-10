@@ -1,6 +1,7 @@
 <template>
     <div class="login-form">
         <div style="width: 400px" class="inner-form">
+            <h2>登录</h2>
             <el-input
                     placeholder="账号"
                     v-model="user.account"
@@ -14,8 +15,12 @@
                     style="margin-bottom: 14px"
                     prefix-icon="el-icon-date">
             </el-input>
-
             <el-button type="primary" @click="login" class="full">登录</el-button>
+
+            <div style="display: flex;justify-content: space-between;padding: 7px;font-size: 12px">
+                <span>没有账号？</span>
+                <span>忘记密码？</span>
+            </div>
         </div>
     </div>
 </template>
