@@ -1,7 +1,7 @@
 <template>
     <div class="login-footer">
-        <p>© 2018 Worktile.com
-            京ICP备13017353号-3 京公网安备11010802012357号</p>
+        <p class="footer-p">© 2018 qlteam.com
+            沪ICP备888888880号-1 沪公网安备88888888888号</p>
     </div>
 </template>
 
@@ -17,5 +17,8 @@
         display: flex;
         flex-direction: column-reverse;
         justify-content: end;
+    }
+    .footer-p{
+        color: #818181;
     }
 </style>
