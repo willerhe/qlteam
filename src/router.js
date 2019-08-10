@@ -87,7 +87,7 @@ export const Routers = [
     {
         path: '',
         component: SideLayout,
-        name: "",
+        name: "侧边栏布局",
         children: SideMenu
     }, {
         path: '',
