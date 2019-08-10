@@ -26,7 +26,7 @@ export const SideMenu = [
 
         path: '/story',
         name: "story",
-        title: "故事",
+        title: "故事墙",
         icon: "el-icon-date",
         component: Story
     },
