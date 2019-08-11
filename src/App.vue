@@ -11,7 +11,7 @@
         components: {},
         mounted() {
             // todo 模拟权限验证   必须登录才能操作
-            this.$router.push("/login")
+            // this.$router.push("/login")
         }
     }
 </script>

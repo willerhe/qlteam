@@ -17,13 +17,13 @@ Vue.prototype.$api = api
 
 Vue.config.productionTip = false
 
-Vue.filter("normalTime",filters.formatTime)
+Vue.filter("normalTime", filters.formatTime)
 
 import EVueContextmenu from 'e-vue-contextmenu'
+
 Vue.use(EVueContextmenu)
 
-
-
+import './permission'
 
 
 new Vue({

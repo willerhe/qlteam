@@ -104,6 +104,7 @@ export const Routers = [
 ]
 
 
+
 export default new Router({
     // mode: 'history', //后端支持可开
     scrollBehavior: () => ({y: 0}),

@@ -28,16 +28,20 @@ http.interceptors.response.use(function (response) {
     let statusCode = error.response.status
     let data = error.response.data
     switch (statusCode) {
+        case 401: {
+            el.Message.warning(data || "您没有访问权限。")
+            break;
+        }
         case 403: {
-            el.Message.warning(data||"服务器拒绝了您的请求。")
+            el.Message.warning(data || "服务器拒绝了您的请求。")
             break;
         }
         case 404: {
-            el.Message.warning("您的请求不存在")
+            el.Message.warning(data || "您的请求不存在")
             break;
         }
         case 500: {
-            el.Message.warning("服务器内部错误")
+            el.Message.warning(data || "服务器内部错误")
             break;
         }
     }
