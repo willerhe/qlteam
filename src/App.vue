@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <!--  todo 放在router-view中      -->
-            <router-view></router-view>
+        <router-view></router-view>
     </div>
 </template>
 

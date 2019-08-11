@@ -36,6 +36,9 @@
         methods: {
             login() {
                 this.$api.login(this.user).then((res) => {
+
+                    this.$store.state.user = res.data
+                    console.log(this.$store.state.user)
                     this.$router.push("/task")
                 })
 

@@ -4,8 +4,8 @@ import qs from 'qs'
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 const http = axios.create({
-    baseURL: "http://127.0.0.1:9900/api/v1",
-    // withCredentials: true
+    baseURL: "http://localhost:9900/api/v1",
+    withCredentials:true,
 })
 
 // 添加请求拦截器

@@ -24,10 +24,12 @@ import EVueContextmenu from 'e-vue-contextmenu'
 Vue.use(EVueContextmenu)
 
 import './permission'
+import store from './store/store'
 
 
 new Vue({
     el: '#app',
+    store,
     router,
     render: h => h(App),
 }).$mount('#app')
