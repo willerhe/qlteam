@@ -6,6 +6,14 @@ let api = {
     task: http.generalApi("task", "tasks")
 }
 
+api.login = function (obj) {
+    return http.post("/login", obj)
+}
+
+api.register = function (obj) {
+    return http.post("/register",obj)
+}
+
 api.http = http
 export default api
 

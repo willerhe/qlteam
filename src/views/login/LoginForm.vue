@@ -28,21 +28,24 @@
 <script>
     export default {
         name: "LoginForm",
-        data(){
-            return{
-                user:{}
+        data() {
+            return {
+                user: {}
             }
         },
-        methods:{
-            login(){
-                this.$router.push("/task")
+        methods: {
+            login() {
+                this.$api.login(this.user).then((res) => {
+                    this.$router.push("/task")
+                })
+
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    .login-form{
+    .login-form {
         min-width: 600px;
         flex-grow: 3;
         border: solid 1px #cccc;
@@ -54,10 +57,12 @@
         border-radius: 3px;
 
     }
-    .full{
+
+    .full {
         width: 100%;
     }
-    .inner-form{
+
+    .inner-form {
 
     }
 </style>
