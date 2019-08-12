@@ -12,7 +12,7 @@ router.beforeEach((to, from, next) => {
         next()
     }
     // 拦截权限
-    if (store.state.user.id) {
+    if (window.localStorage.getItem("authorization") !== null) {
         next()
     } else {
         router.push("/login")

@@ -52,8 +52,10 @@
                 this.$confirm('确认退出吗?', '退出', {
                     type: 'warning'
                 }).then(() => {
-                        console.log("退出登录")
-                    })
+                    console.log("退出登录")
+                    window.localStorage.clear()
+                    this.$router.push("/login")
+                })
             },
             routeChange(to, from) {
                 this.rememberMe()
