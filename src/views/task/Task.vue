@@ -1,21 +1,21 @@
 <template>
-    <transition  name="el-zoom-in-center">
-    <div class="task">
-        <div class="task-1"
-             v-for="task in tasks">
-            <p align="center">{{task.label}}</p>
-            <div class="task-content">
-                <draggable :group="group.inbox" :list="task.data" @change="change"
-                           style="padding: 5px;">
-                    <task-item :key="'k'+index" v-for="(i,index) in task.data" :item="i"></task-item>
-                </draggable>
-            </div>
-            <div class="add-item">
-                <span class="el-icon-plus add-item-1"></span>
-                <span class="add-item-2">添加新任务</span>
+    <transition name="el-zoom-in-center">
+        <div class="task">
+            <div class="task-1"
+                 v-for="task in tasks">
+                <p align="center">{{task.label}}</p>
+                <div class="task-content">
+                    <draggable :group="group.inbox" :list="task.data" @change="change"
+                               style="padding: 5px;">
+                        <task-item :key="'k'+index" v-for="(i,index) in task.data" :item="i"></task-item>
+                    </draggable>
+                </div>
+                <div class="add-item">
+                    <span class="el-icon-plus add-item-1"></span>
+                    <span class="add-item-2">添加新任务</span>
+                </div>
             </div>
         </div>
-    </div>
     </transition>
 </template>
 
@@ -60,23 +60,28 @@
                 console.log("数据初始化函数")
                 let hash = {inbox: 0, todo: 1, nextStep: 2, later: 3}
                 for (let item of this.context.items) {
-                    let box = this.context.tasks[hash[item.box]].data
-                    switch (item.box) {
-                        case "inbox":
-                            box.push(item);
-                            break;
-                        case "todo":
-                            box.push(item);
-                            break;
-                        case "nextStep":
-                            box.push(item);
-                            break;
-                        case "later":
-                            box.push(item);
-                            break;
+                    // 判断box类型是否符合规范
+                    if (hash[item.box] !== undefined) {
+                        let box = this.context.tasks[hash[item.box]].data
+                        switch (item.box) {
+                            case "inbox":
+                                box.push(item);
+                                break;
+                            case "todo":
+                                box.push(item);
+                                break;
+                            case "nextStep":
+                                box.push(item);
+                                break;
+                            case "later":
+                                box.push(item);
+                                break;
+                        }
+                    } else {
+                        console.log("当前box类型错误", item)
                     }
+
                 }
-                console.log("处理后的任务", this.context.tasks)
             },
             change(e) {
                 console.log(e)
