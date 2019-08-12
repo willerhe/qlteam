@@ -1,22 +1,38 @@
 <template>
-    <transition name="el-zoom-in-center">
-        <div class="task">
-            <div class="task-1"
-                 v-for="task in tasks">
-                <p align="center">{{task.label}}</p>
-                <div class="task-content">
-                    <draggable :group="group.inbox" :list="task.data" @change="change"
-                               style="padding: 5px;">
-                        <task-item :key="'k'+index" v-for="(i,index) in task.data" :item="i"></task-item>
-                    </draggable>
-                </div>
-                <div class="add-item">
-                    <span class="el-icon-plus add-item-1"></span>
-                    <span class="add-item-2">添加新任务</span>
+    <div>
+        <transition name="el-zoom-in-center">
+            <div class="task">
+                <div class="task-1"
+                     v-for="task in tasks">
+                    <p align="center">{{task.label}}</p>
+                    <div class="task-content">
+                        <draggable :group="group.inbox" :list="task.data" @change="change"
+                                   style="padding: 5px;">
+                            <task-item :key="'k'+index" v-for="(i,index) in task.data" :item="i"></task-item>
+                        </draggable>
+                    </div>
+                    <div class="add-item">
+                        <div @click="openDialog(task)">
+                            <span class="el-icon-plus add-item-1"></span>
+                            <span class="add-item-2">添加新任务</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </transition>
+        </transition>
+
+        <el-dialog
+                :title="dialog.title"
+                :visible.sync="dialog.visible"
+                width="30%"
+                :before-close="handleClose">
+            <span>这是一段信息</span>
+            <span slot="footer" class="dialog-footer">
+                    <el-button @click="handleClose">取 消</el-button>
+                    <el-button type="primary" @click="dialog.visible = false">确 定</el-button>
+            </span>
+        </el-dialog>
+    </div>
 </template>
 
 <script>
@@ -31,6 +47,11 @@
         extends: AutoLoadPager,
         data() {
             return {
+                dialog: {
+                    visible: false,
+                    title: "",
+                    item: {}
+                },
                 inject: ['context'],
                 context: this,
                 api: this.$api.task,
@@ -55,6 +76,15 @@
             }
         },
         methods: {
+            openDialog(task, item) {
+                let opt = item && item.id ? "更新任务" : "添加任务"
+                this.dialog.visible = true
+                this.dialog.title = task.label + " - " + opt
+            },
+            handleClose() {
+                console.log("%c重置 dialog", "color:red")
+                this.dialog.visible = false
+            },
             // dataInit是回调函数  这里不能够用当前上下文来操作数据
             grouping() {
                 let hash = {inbox: 0, todo: 1, nextStep: 2, later: 3}
@@ -77,7 +107,7 @@
                                 break;
                         }
                     } else {
-                        console.log("%c当前box类型错误"+JSON.stringify(item), "color: red")
+                        console.log("%c当前box类型错误" + JSON.stringify(item), "color: blue")
                     }
 
                 }
