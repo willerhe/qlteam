@@ -57,7 +57,6 @@
         methods: {
             // dataInit是回调函数  这里不能够用当前上下文来操作数据
             grouping() {
-                console.log("数据初始化函数")
                 let hash = {inbox: 0, todo: 1, nextStep: 2, later: 3}
                 for (let item of this.context.items) {
                     // 判断box类型是否符合规范
@@ -78,7 +77,7 @@
                                 break;
                         }
                     } else {
-                        console.log("当前box类型错误", item)
+                        console.log("%c当前box类型错误"+JSON.stringify(item), "color: red")
                     }
 
                 }

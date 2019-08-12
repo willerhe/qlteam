@@ -18,16 +18,20 @@
                 context: {}
             }
         },
+        methods:{
+          init(){
+              this.context.api.list().then(res => {
+                  this.items = res.data
+                  // 执行callback
+                  if (this.context.callback) {
+                      this.context.callback()
+                  }
+                  // console.log("查询结果", this.items)
+              })
+          }
+        },
         mounted() {
-            console.log(this.context)
-            this.context.api.list().then(res => {
-                this.items = res.data
-                // 执行callback
-                if (this.context.callback) {
-                    this.context.callback()
-                }
-                // console.log("查询结果", this.items)
-            })
+            this.init()
 
 
         }
