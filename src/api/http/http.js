@@ -6,7 +6,7 @@ import store from "../../store/store";
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 const http = axios.create({
     baseURL: "http://localhost:9900/api/v1",
-    // withCredentials: true,
+    withCredentials: true,
 })
 
 // 添加请求拦截器
@@ -17,6 +17,7 @@ http.interceptors.request.use(function (config) {
     }
     let token = window.localStorage.getItem("authorization")
     if (token !== null) {
+        console.log("添加认证信息")
         config.headers["authorization"] = token
     }
 

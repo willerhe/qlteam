@@ -13,9 +13,11 @@ router.beforeEach((to, from, next) => {
     }
     // 拦截权限
     if (window.localStorage.getItem("authorization") !== null) {
+        console.log("有权限")
         next()
     } else {
-        router.push("/login")
+        console.log("没有权限")
+        router.push("/sys/login")
     }
 
 })

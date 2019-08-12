@@ -38,7 +38,7 @@
                 this.$api.login(this.user).then((res) => {
                     this.$store.state.user = res.data.user
                     window.localStorage.setItem("authorization", res.data.authorization)
-                    this.$router.push("ql/task")
+                    this.$router.push("/ql/task")
                 })
 
             }

@@ -24,7 +24,7 @@ export const SideMenu = [
         component: Task
     }, {
 
-        path: '/story',
+        path: '/ql/story',
         name: "story",
         title: "故事墙",
         icon: "el-icon-date",
@@ -83,12 +83,12 @@ export const SideMenu = [
 
 export const Routers = [
     {
-        path: '/ql',
+        path: '/',
         component: SideLayout,
         name: "侧边栏布局",
         children: SideMenu
     }, {
-        path: '/',
+        path: '/sys',
         component: BlankLayout,
         name: "空白布局",
         children: [{
