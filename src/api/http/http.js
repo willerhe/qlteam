@@ -1,11 +1,12 @@
 import axios from 'axios'
 import el from 'element-ui'
 import qs from 'qs'
+import store from "../../store/store";
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 const http = axios.create({
     baseURL: "http://localhost:9900/api/v1",
-    withCredentials:true,
+    withCredentials: true,
 })
 
 // 添加请求拦截器
@@ -14,6 +15,10 @@ http.interceptors.request.use(function (config) {
     if (config.method === 'post') {
         config.data = qs.stringify(config.data);
     }
+    if (store.state.authorization) {
+        config.headers["authorization"] = store.state.authorization
+    }
+
     return config;
 }, function (error) {
     console.log("对请求错误做些什么")

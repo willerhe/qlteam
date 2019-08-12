@@ -36,10 +36,10 @@
         methods: {
             login() {
                 this.$api.login(this.user).then((res) => {
-
-                    this.$store.state.user = res.data
-                    console.log(this.$store.state.user)
-                    this.$router.push("/task")
+                    this.$store.state.user = res.data.user
+                    this.$store.state.authorization = res.data.authorization
+                    console.log(res.data.authorization)
+                    this.$router.push("ql/task")
                 })
 
             }
