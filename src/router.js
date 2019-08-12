@@ -17,7 +17,7 @@ import BlankLayout from "./layout/BlankLayout";
 export const SideMenu = [
     {
 
-        path: '/task',
+        path: '/ql/task',
         name: "task",
         title: "任务",
         icon: "el-icon-menu",
@@ -32,16 +32,14 @@ export const SideMenu = [
     },
 
     {
-        path: '/project',
+        path: '/ql/project',
         name: "project",
         title: "项目",
         icon: "el-icon-files",
         component: Project,
     },
-
-
     {
-        path: '/project/:id',
+        path: '/ql/project/:id',
         name: "project.story",
         title: "项目",
         icon: "el-icon-files",
@@ -50,7 +48,7 @@ export const SideMenu = [
     },
     {
 
-        path: '/calendar',
+        path: '/ql/calendar',
         name: "calendar",
         title: "日程",
         icon: "el-icon-date",
@@ -58,21 +56,21 @@ export const SideMenu = [
     },
 
     {
-        path: '/document',
+        path: '/ql/document',
         name: "document",
         title: "文档",
         icon: "el-icon-folder",
         component: Document
     },
     {
-        path: '/team',
+        path: '/ql/team',
         name: "team",
         title: "团队",
         icon: "el-icon-wind-power",
         component: Team
     },
     {
-        path: '/setting',
+        path: '/ql/setting',
         name: "setting",
         title: "设置",
         icon: "el-icon-setting",
@@ -85,12 +83,12 @@ export const SideMenu = [
 
 export const Routers = [
     {
-        path: '',
+        path: '/ql',
         component: SideLayout,
         name: "侧边栏布局",
         children: SideMenu
     }, {
-        path: '',
+        path: '/',
         component: BlankLayout,
         name: "空白布局",
         children: [{
