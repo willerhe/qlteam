@@ -14,15 +14,15 @@
                             </div>
                         </draggable>
                     </div>
-                    <div class="add-item"  @click="openAddTask(task)">
+                    <div class="add-item"  @click.stop="openAddTask(task)">
                         <div>
                             <span class="el-icon-plus add-item-1"></span>
                             <span class="add-item-2">添加新任务</span>
                         </div>
                     </div>
                     <transition name="el-zoom-in-top">
-                        <div class="add-item-area" style="border: 1px solid red" v-show="task.addTaskAreaVisible">
-                            <p>1</p>
+                        <div class="add-item-area" style="border: 1px solid red" v-show="task.addTaskAreaVisible" @click.stop="">
+                            <el-button type="primary">确定</el-button>
                         </div>
                     </transition>
 
@@ -135,6 +135,12 @@
             }
         },
         mounted() {
+            let _this = this
+            document.onclick=function(){
+                for(let t of _this.tasks){
+                    t.addTaskAreaVisible = false
+                }
+            }
         }
 
     }
