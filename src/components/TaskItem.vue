@@ -4,7 +4,8 @@
             <div class="task-item-1">
                 <span>{{item.name}}</span>
                 <el-tag type="success" effect="plain" size="mini" plain>
-                    {{item.status}}
+                    <!--                    {{item.status}}-->
+                    待完善
                 </el-tag>
             </div>
             <span class="task-item-2">{{item.describe}}</span>
