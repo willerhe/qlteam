@@ -14,12 +14,18 @@
                             </div>
                         </draggable>
                     </div>
-                    <div class="add-item">
-                        <div @click="openDialog(task,{},'添加新任务')">
+                    <div class="add-item"  @click="openAddTask(task)">
+                        <div>
                             <span class="el-icon-plus add-item-1"></span>
                             <span class="add-item-2">添加新任务</span>
                         </div>
                     </div>
+                    <transition name="el-zoom-in-top">
+                        <div class="add-item-area" style="border: 1px solid red" v-show="task.addTaskAreaVisible">
+                            <p>1</p>
+                        </div>
+                    </transition>
+
                 </div>
             </div>
         </transition>
@@ -68,25 +74,29 @@
                 },
                 tasks: [
                     // 收件箱
-                    {name: "inbox", data: [], label: "收件箱"},
+                    {name: "inbox", data: [], label: "收件箱", addTaskAreaVisible: false},
                     // 今天要做
-                    {name: "todo", data: [], label: "今天要做"},
+                    {name: "todo", data: [], label: "今天要做", addTaskAreaVisible: false},
                     // 下一步要做
-                    {name: "nextStep", data: [], label: "下一步要做"},
+                    {name: "nextStep", data: [], label: "下一步要做", addTaskAreaVisible: false},
                     // 以后再做
-                    {name: "later", data: [], label: "以后再做"}
+                    {name: "later", data: [], label: "以后再做", addTaskAreaVisible: false}
                 ]
             }
         },
         methods: {
             taskDetail(task, item) {
                 console.log("show task detail")
-                this.openDialog(task,item,"任务详情")
+                this.openDialog(task, item, "任务详情")
 
             },
-            openDialog(task, item,title) {
-                this.dialog.visible = true
-                this.dialog.title = task.label + " - " + title
+            openAddTask(task) {
+                // 关闭所有
+                for (let t of this.tasks) {
+                    t.addTaskAreaVisible = false
+                }
+                // 打开当前
+                task.addTaskAreaVisible = true
             },
             handleClose() {
                 console.log("%c重置 dialog", "color:red")
@@ -137,6 +147,14 @@
         display: flex;
         justify-content: center;
         height: 40px;
+        align-items: center;
+        cursor: pointer
+    }
+
+    .add-item-area {
+        display: flex;
+        justify-content: center;
+        height: 100px;
         align-items: center;
         cursor: pointer
     }
