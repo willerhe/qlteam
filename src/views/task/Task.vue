@@ -8,11 +8,14 @@
                     <div class="task-content">
                         <draggable :group="group.inbox" :list="task.data" @change="change"
                                    style="padding: 5px;">
-                            <task-item :key="'k'+index" v-for="(i,index) in task.data" :item="i"></task-item>
+                            <div :key="'k'+index" v-for="(i,index) in task.data"
+                                 @click="taskDetail(task,i)">
+                                <task-item :item="i"></task-item>
+                            </div>
                         </draggable>
                     </div>
                     <div class="add-item">
-                        <div @click="openDialog(task)">
+                        <div @click="openDialog(task,{},'添加新任务')">
                             <span class="el-icon-plus add-item-1"></span>
                             <span class="add-item-2">添加新任务</span>
                         </div>
@@ -76,10 +79,14 @@
             }
         },
         methods: {
-            openDialog(task, item) {
-                let opt = item && item.id ? "更新任务" : "添加任务"
+            taskDetail(task, item) {
+                console.log("show task detail")
+                this.openDialog(task,item,"任务详情")
+
+            },
+            openDialog(task, item,title) {
                 this.dialog.visible = true
-                this.dialog.title = task.label + " - " + opt
+                this.dialog.title = task.label + " - " + title
             },
             handleClose() {
                 console.log("%c重置 dialog", "color:red")
