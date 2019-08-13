@@ -1,28 +1,34 @@
 <template>
-    <div class="login-form">
-        <div style="width: 400px" class="inner-form">
-            <h2>登录</h2>
-            <el-input
-                    placeholder="账号"
-                    v-model="user.account"
-                    style="margin-bottom: 14px"
-                    prefix-icon="el-icon-user">
-            </el-input>
-            <el-input
-                    placeholder="密码"
-                    show-password
-                    v-model="user.password"
-                    style="margin-bottom: 14px"
-                    prefix-icon="el-icon-lock">
-            </el-input>
-            <el-button type="primary" @click="login" class="full">登录</el-button>
+    <transition name="el-zoom-in-center">
+        <div class="login-form">
+            <div style="width: 400px" class="inner-form">
+                <h2>登录</h2>
+                <el-input
+                        placeholder="账号"
+                        v-model="user.account"
+                        style="margin-bottom: 14px"
+                        prefix-icon="el-icon-user">
+                </el-input>
+                <el-input
+                        placeholder="密码"
+                        show-password
+                        v-model="user.password"
+                        style="margin-bottom: 14px"
+                        prefix-icon="el-icon-lock">
+                </el-input>
+                <el-button type="primary" @click="login" class="full">登录</el-button>
 
-            <div style="display: flex;justify-content: space-between;padding: 7px;font-size: 12px">
-                <span>没有账号？</span>
-                <span>忘记密码？</span>
+                <div style="display: flex;justify-content: space-between;padding: 7px;font-size: 12px">
+                    <router-link to="/sys/register" style="text-decoration: none" >
+                        <span style="color: #2765c2">没有账号？</span>
+                    </router-link>
+                    <span>忘记密码？</span>
+                </div>
             </div>
+
         </div>
-    </div>
+    </transition>
+
 </template>
 
 <script>

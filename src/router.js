@@ -13,6 +13,7 @@ import Calendar from "./views/task/Calendar"
 import Story from "./views/story/Story";
 import SideLayout from "./layout/SideLayout";
 import BlankLayout from "./layout/BlankLayout";
+import Register from "./views/login/Register";
 
 export const SideMenu = [
     {
@@ -96,11 +97,15 @@ export const Routers = [
             component: Login,
             name: "登录",
 
+        }, {
+            path: 'register',
+            component: Register,
+            name: "注册",
+
         }]
     }
 
 ]
-
 
 
 export default new Router({
