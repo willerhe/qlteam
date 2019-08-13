@@ -14,15 +14,28 @@
                             </div>
                         </draggable>
                     </div>
-                    <div class="add-item"  @click.stop="openAddTask(task)">
+                    <div class="add-item" @click.stop="openAddTask(task)" v-if="!task.addTaskAreaVisible">
                         <div>
                             <span class="el-icon-plus add-item-1"></span>
                             <span class="add-item-2">添加新任务</span>
                         </div>
                     </div>
                     <transition name="el-zoom-in-top">
-                        <div class="add-item-area" style="border: 1px solid red" v-show="task.addTaskAreaVisible" @click.stop="">
-                            <el-button type="primary">确定</el-button>
+                        <div class="add-item-area" v-show="task.addTaskAreaVisible"
+                             @click.stop="">
+
+                            <el-input
+                                    type="textarea"
+                                    :autosize="{ minRows: 3, maxRows: 8}"
+                                    placeholder="任务内容"
+                                    v-model="newItem.describe">
+                            </el-input>
+                            <div style="display: flex;flex-direction: row;justify-content: flex-start;margin: 7px">
+                                <el-button type="primary" size="mini" round>确定</el-button>
+                                <el-button plain  round @click.stop="task.addTaskAreaVisible = false" size="mini">取消</el-button>
+
+                            </div>
+
                         </div>
                     </transition>
 
@@ -38,7 +51,7 @@
             <span>这是一段信息</span>
             <span slot="footer" class="dialog-footer">
                     <el-button @click="handleClose">取 消</el-button>
-                    <el-button type="primary" @click="dialog.visible = false">确 定</el-button>
+                    <el-button type="primary" @click="dialog.visible = false" >确 定</el-button>
             </span>
         </el-dialog>
     </div>
@@ -56,6 +69,7 @@
         extends: AutoLoadPager,
         data() {
             return {
+                newItem: {},
                 dialog: {
                     visible: false,
                     title: "",
@@ -85,6 +99,12 @@
             }
         },
         methods: {
+            resetAddArea() {
+                this.newItem = {}
+                for (let t of this.tasks) {
+                    t.addTaskAreaVisible = false
+                }
+            },
             taskDetail(task, item) {
                 console.log("show task detail")
                 this.openDialog(task, item, "任务详情")
@@ -92,9 +112,7 @@
             },
             openAddTask(task) {
                 // 关闭所有
-                for (let t of this.tasks) {
-                    t.addTaskAreaVisible = false
-                }
+                this.resetAddArea()
                 // 打开当前
                 task.addTaskAreaVisible = true
             },
@@ -136,9 +154,10 @@
         },
         mounted() {
             let _this = this
-            document.onclick=function(){
-                for(let t of _this.tasks){
+            document.onclick = function () {
+                for (let t of _this.tasks) {
                     t.addTaskAreaVisible = false
+                    _this.newItem = {}
                 }
             }
         }
@@ -159,8 +178,8 @@
 
     .add-item-area {
         display: flex;
-        justify-content: center;
-        height: 100px;
+        flex-direction: column;
+        padding: 7px;
         align-items: center;
         cursor: pointer
     }
@@ -191,6 +210,7 @@
         width: 24%;
         margin: 7px;
         background: #fff;
+        border-radius: 3px;
     }
 
     .task-content {
