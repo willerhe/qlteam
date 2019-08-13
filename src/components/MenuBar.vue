@@ -54,7 +54,7 @@
                 }).then(() => {
                     console.log("退出登录")
                     window.localStorage.clear()
-                    this.$router.push("/login")
+                    this.$router.push("/sys/login")
                 })
             },
             routeChange(to, from) {
