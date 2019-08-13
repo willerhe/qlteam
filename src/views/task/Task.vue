@@ -31,7 +31,7 @@
                                     v-model="newItem.describe">
                             </el-input>
                             <div style="display: flex;flex-direction: row;justify-content: flex-start;margin: 7px">
-                                <el-button type="primary" size="mini" round>确定</el-button>
+                                <el-button type="primary" size="mini" round @click="saveNewItem">确定</el-button>
                                 <el-button plain  round @click.stop="task.addTaskAreaVisible = false" size="mini">取消</el-button>
 
                             </div>
@@ -99,6 +99,10 @@
             }
         },
         methods: {
+            saveNewItem(){
+                console.log("save new item")
+
+            },
             resetAddArea() {
                 this.newItem = {}
                 for (let t of this.tasks) {
