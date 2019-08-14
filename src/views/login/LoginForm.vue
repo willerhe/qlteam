@@ -19,7 +19,7 @@
                 <el-button type="primary" @click="login" class="full">登录</el-button>
 
                 <div style="display: flex;justify-content: space-between;padding: 7px;font-size: 12px">
-                    <router-link to="/sys/register" style="text-decoration: none" >
+                    <router-link to="/sys/register" style="text-decoration: none">
                         <span style="color: #2765c2">没有账号？</span>
                     </router-link>
                     <span>忘记密码？</span>
@@ -43,6 +43,7 @@
             login() {
                 this.$api.login(this.user).then((res) => {
                     this.$store.state.user = res.data.user
+                    // todo 前端怎么存储用户的信息  cookies ? localStorage？ vuex 是否持久化的
                     window.localStorage.setItem("authorization", res.data.authorization)
                     this.$router.push("/ql/task")
                 })

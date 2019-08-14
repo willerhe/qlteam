@@ -31,7 +31,8 @@
                                     v-model="newItem.describe">
                             </el-input>
                             <div style="display: flex;flex-direction: row;justify-content: flex-start;margin: 7px">
-                                <el-button type="primary" size="mini" round @click="saveNewItem(task)">确定</el-button>
+                                <el-button type="primary" size="mini" round @click="privateSaveNewItem(task)">确定
+                                </el-button>
                                 <el-button plain round @click.stop="task.addTaskAreaVisible = false" size="mini">取消
                                 </el-button>
 
@@ -100,9 +101,11 @@
             }
         },
         methods: {
-            saveNewItem(task) {
+            // 创建自己的task
+            privateSaveNewItem(task) {
                 console.log("save new item")
                 this.newItem.box = task.name
+                this.newItem.kind = "private"
                 this.$api.task.create(this.newItem).then((res) => {
                     this.init()
                 })
