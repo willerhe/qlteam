@@ -24,7 +24,7 @@ let filters = {
 
         const diff = (now - d) / 1000
         if (diff < 30 && diff > 0) {
-            return 'just'
+            return '刚才'
         } else if (diff < 3600 && diff > 0) { // less 1 hour
             return Math.ceil(diff / 60) + ' 分钟前'
         } else if (diff < 3600 * 24 && diff > 0) {

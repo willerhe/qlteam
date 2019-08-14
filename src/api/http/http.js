@@ -68,7 +68,7 @@ http.generalApi = function (odd, plural) {
         get: function (id) {
             return http.get(odd + '/' + id)
         },
-        save: function (domain) {
+        create: function (domain) {
             return http.post(odd, domain)
         },
         update: function (domain) {

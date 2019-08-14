@@ -31,8 +31,9 @@
                                     v-model="newItem.describe">
                             </el-input>
                             <div style="display: flex;flex-direction: row;justify-content: flex-start;margin: 7px">
-                                <el-button type="primary" size="mini" round @click="saveNewItem">确定</el-button>
-                                <el-button plain  round @click.stop="task.addTaskAreaVisible = false" size="mini">取消</el-button>
+                                <el-button type="primary" size="mini" round @click="saveNewItem(task)">确定</el-button>
+                                <el-button plain round @click.stop="task.addTaskAreaVisible = false" size="mini">取消
+                                </el-button>
 
                             </div>
 
@@ -51,7 +52,7 @@
             <span>这是一段信息</span>
             <span slot="footer" class="dialog-footer">
                     <el-button @click="handleClose">取 消</el-button>
-                    <el-button type="primary" @click="dialog.visible = false" >确 定</el-button>
+                    <el-button type="primary" @click="dialog.visible = false">确 定</el-button>
             </span>
         </el-dialog>
     </div>
@@ -99,8 +100,16 @@
             }
         },
         methods: {
-            saveNewItem(){
+            saveNewItem(task) {
                 console.log("save new item")
+                this.newItem.box = task.name
+                this.$api.task.create(this.newItem).then((res) => {
+                    this.init()
+                })
+                // 初始化newItem
+
+                task.addTaskAreaVisible = false
+                this.newItem = {}
 
             },
             resetAddArea() {
@@ -127,6 +136,11 @@
             // dataInit是回调函数  这里不能够用当前上下文来操作数据
             grouping() {
                 let hash = {inbox: 0, todo: 1, nextStep: 2, later: 3}
+                // todo 改成循环 初始化盒子
+                this.context.tasks[0].data = []
+                this.context.tasks[1].data = []
+                this.context.tasks[2].data = []
+                this.context.tasks[3].data = []
                 for (let item of this.context.items) {
                     // 判断box类型是否符合规范
                     if (hash[item.box] !== undefined) {
