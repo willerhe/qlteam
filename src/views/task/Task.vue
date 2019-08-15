@@ -7,7 +7,7 @@
                     <p align="center">{{task.label}}</p>
                     <div class="task-content">
                         <draggable :group="group.inbox" :list="task.data" @change="change"
-                                   style="padding: 5px;">
+                                   style="padding: 5px;" @end="end">
                             <div :key="'k'+index" v-for="(i,index) in task.data"
                                  @click="taskDetail(task,i)">
                                 <task-item :item="i"></task-item>
@@ -101,6 +101,15 @@
             }
         },
         methods: {
+            end(evt){
+                console.log(evt)
+
+                console.log("拖动本身",evt.item ,"目标列表",evt.to)
+                // evt.from  // 可以知道之前的列表
+                // evt.oldIndex  // 可以知道拖动前的位置
+                // evt.newIndex  // 可以知道拖动后的位置
+
+            },
             // 创建自己的task
             privateSaveNewItem(task) {
                 console.log("save new item")
