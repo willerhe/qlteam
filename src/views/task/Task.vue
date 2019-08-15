@@ -35,9 +35,7 @@
                                 </el-button>
                                 <el-button plain round @click.stop="task.addTaskAreaVisible = false" size="mini">取消
                                 </el-button>
-
                             </div>
-
                         </div>
                     </transition>
 
@@ -153,6 +151,7 @@
                 this.context.tasks[1].data = []
                 this.context.tasks[2].data = []
                 this.context.tasks[3].data = []
+
                 for (let item of this.context.items) {
                     // 判断box类型是否符合规范
                     if (hash[item.box] !== undefined) {
@@ -191,12 +190,10 @@
                 }
             }
         }
-
     }
 </script>
 
 <style scoped>
-
 
     .add-item {
         display: flex;
@@ -228,8 +225,6 @@
     .task {
         display: block;
         overflow-wrap: unset;
-
-
     }
 
     /*todo 怎么把width 设置成25%  盒子还能够在一行展示*/
