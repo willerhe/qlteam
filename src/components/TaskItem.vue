@@ -5,7 +5,7 @@
                 <span>{{item.name}}</span>
                 <el-tag type="success" effect="plain" size="mini" plain>
                     <!--                    {{item.status}}-->
-                    待完善
+                    待完善{{item.id}}
                 </el-tag>
             </div>
             <span class="task-item-2">{{item.describe}}</span>
