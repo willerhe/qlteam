@@ -6,8 +6,8 @@
                      v-for="task in tasks">
                     <p align="center">{{task.label}}</p>
                     <div class="task-content" style="min-height: 5px">
-                        <draggable :group="task" :list="task.data" @change="change($event)"
-                                   style="padding: 5px;" @end="end" @add="add" :id="task.name">
+                        <draggable :group="group" :list="task.data"
+                                   style="padding: 5px;" :id="task.name" @start="start" @end="end" :move="move">
                             <!--          todo 拖动的id 是本列的最后一个的id                   -->
                             <div :key="'k'+index" v-for="(i,index) in task.data"
                                  @click="taskDetail(task,i)" :id="i.id">
@@ -70,6 +70,7 @@
         extends: AutoLoadPager,
         data() {
             return {
+                changedTask: {},
                 newItem: {},
                 dialog: {
                     visible: false,
@@ -80,40 +81,37 @@
                 context: this,
                 api: this.$api.task,
                 callback: this.grouping,
-                group: {
-                    inbox: {name: "inbox", put: true},
-                    todo: {name: "inbox", put: true},
-                    nextStep: {name: "nextStep", put: true},
-                    later: {name: "later", put: true}
-                },
+                group: {name: "group", put: true},
                 tasks: [
                     // 收件箱
-                    {name: "inbox", data: [], label: "收件箱", addTaskAreaVisible: false, put: true},
+                    {name: "inbox", data: [], label: "收件箱", addTaskAreaVisible: false},
                     // 今天要做
-                    {name: "todo", data: [], label: "今天要做", addTaskAreaVisible: false, put: true},
+                    {name: "todo", data: [], label: "今天要做", addTaskAreaVisible: false},
                     // 下一步要做
-                    {name: "nextStep", data: [], label: "下一步要做", addTaskAreaVisible: false, put: true},
+                    {name: "nextStep", data: [], label: "下一步要做", addTaskAreaVisible: false},
                     // 以后再做
-                    {name: "later", data: [], label: "以后再做", addTaskAreaVisible: false, put: true}
+                    {name: "later", data: [], label: "以后再做", addTaskAreaVisible: false}
                 ]
             }
         },
         methods: {
-            add(evt) {
-                let t = {id: parseInt(evt.item.id), box: evt.to.id}
-                console.log("更新", t)
-                this.$api.task.update(t).then(res => {
-                    this.init()
-                })
-
+            start(e) {
+                // console.log("拖动的任务编号是", e.item.id, "拖动的盒子是", e.from.id)
+                this.changedTask = {id: parseInt(e.item.id), box: e.from.id}
             },
-            end(evt) {
-                // console.log("事件 ", evt)
-                // console.log("拖动本身", evt.item, "目标列表", evt.to)
-                // evt.from  // 可以知道之前的列表
-                // evt.oldIndex  // 可以知道拖动前的位置
-                // evt.newIndex  // 可以知道拖动后的位置
-
+            end(e) {
+                let id = parseInt(e.item.id)
+                let box = e.to.id
+                if (id === this.changedTask.id && box !== this.changedTask.box) {
+                    this.changedTask.box = box
+                    this.$api.task.update(this.changedTask).then(res => {
+                        this.init()
+                    })
+                }
+            },
+            move: function (evt, originalEvent) {
+                // console.log("move",evt)
+                // console.log("move",originalEvent) //鼠标位置
             },
             // 创建自己的task
             privateSaveNewItem(task) {
@@ -182,10 +180,6 @@
                     }
 
                 }
-            },
-            change(e) {
-                console.log(e)
-
             }
         },
         mounted() {

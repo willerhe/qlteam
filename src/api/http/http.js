@@ -1,7 +1,7 @@
 import axios from 'axios'
 import el from 'element-ui'
 import qs from 'qs'
-import store from "../../store/store";
+import router from "../../router";
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 const http = axios.create({
@@ -36,7 +36,9 @@ http.interceptors.response.use(function (response) {
     let data = error.response.data
     switch (statusCode) {
         case 401: {
-            el.Message.warning(data || "您没有访问权限。")
+            // todo 当没有权限的时候跳转到登录页面
+            el.Message.warning(data || "登录信息过期，请重新登录。")
+            router.push("/sys/login")
             break;
         }
         case 403: {
