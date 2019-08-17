@@ -4,23 +4,40 @@
             <div class="task-item-1">
                 <span>{{item.name}}</span>
 
-                <el-dropdown trigger="click">
-                    <el-tag type="success" effect="plain" size="mini" plain @click.stop="changeStatus">
-                        <span class="el-icon-circle-check" style="font-weight: bolder;margin-right: 3px;color: #67C23A"></span>
+                <el-dropdown trigger="click" @command="clickItem">
+                    <el-tag type="success" effect="plain" size="mini" plain @click.stop="changeStatus"
+                            v-if="item.status === 'finished'">
+                            <span class="el-icon-circle-check"
+                                  style="font-weight: bolder;margin-right: 3px;color: #67C23A"></span>
                         <span>已完成</span>
+                    </el-tag>
+                    <el-tag type="warning" effect="plain" size="mini" plain @click.stop="changeStatus"
+                            v-else-if="item.status === 'ongoing'">
+                            <span class="el-icon-video-pause"
+                                  style="font-weight: bolder;margin-right: 7px;color: #E6A23C"></span>
+                        <span>进行中</span>
+                    </el-tag>
+                    <el-tag type="danger" effect="plain" size="mini" plain @click.stop="changeStatus"
+                            v-else="item.status === 'preparing'">
+                            <span class="el-icon-remove-outline"
+                                  style="font-weight: bolder;margin-right: 7px;color: #F56C6C"></span>
+                        <span>未开始</span>
                     </el-tag>
 
                     <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>
-                            <span class="el-icon-remove-outline" style="font-weight: bolder;margin-right: 7px;color: #F56C6C"></span>
+                        <el-dropdown-item command="preparing">
+                            <span class="el-icon-remove-outline"
+                                  style="font-weight: bolder;margin-right: 7px;color: #F56C6C"></span>
                             <span>未开始</span>
                         </el-dropdown-item>
-                        <el-dropdown-item>
-                            <span class="el-icon-video-pause" style="font-weight: bolder;margin-right: 7px;color: #E6A23C"></span>
+                        <el-dropdown-item command="ongoing">
+                            <span class="el-icon-video-pause"
+                                  style="font-weight: bolder;margin-right: 7px;color: #E6A23C"></span>
                             <span>进行中</span>
                         </el-dropdown-item>
-                        <el-dropdown-item >
-                            <span class="el-icon-circle-check" style="font-weight: bolder;margin-right: 7px;color: #67C23A"></span>
+                        <el-dropdown-item command="finished">
+                            <span class="el-icon-circle-check"
+                                  style="font-weight: bolder;margin-right: 7px;color: #67C23A"></span>
                             <span>已完成</span>
                         </el-dropdown-item>
                     </el-dropdown-menu>
@@ -54,6 +71,13 @@
         },
         methods: {
             changeStatus() {
+            },
+            clickItem(status) {
+                console.log("点击了菜单项", status)
+                this.item.status = status
+                this.$api.task.update(this.item).then(() => {
+                    this.$emit("init")
+                })
             }
         }
     }
