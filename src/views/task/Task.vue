@@ -47,13 +47,36 @@
         <el-dialog
                 :title="dialog.title"
                 :visible.sync="dialog.visible"
-                width="30%"
-                :before-close="handleClose">
-            <span>这是一段信息</span>
-            <span slot="footer" class="dialog-footer">
-                    <el-button @click="handleClose">取 消</el-button>
-                    <el-button type="primary" @click="dialog.visible = false">确 定</el-button>
-            </span>
+                width="45%"
+                :before-close="handleClose" :show-close="false">
+            <div slot="title"
+                 style="display: flex;justify-content: space-between;border-bottom: #eee 1px solid;padding-bottom: 10px">
+                <span>{{dialog.item.name}}</span>
+                <div style="color: #a8a8a8">
+                    <span style="margin-left: 14px;cursor: pointer" class="el-icon-delete" @click="deleteTask"></span>
+                    <span style="margin-left: 14px">|</span>
+                    <span style="margin-left: 14px;cursor: pointer;" class="el-icon-close"
+                          @click="dialog.visible = false"></span>
+                </div>
+            </div>
+            <p style="font-size: 20px;color: #333333;margin: 0px">{{dialog.item.describe}}</p>
+            <div slot="footer" class="dialog-footer" style="border-top: #eee solid 1px;padding-top: 14px">
+                <el-input
+                        type="text"
+                        show-word-limit
+                        autosize
+                        placeholder="写评论"
+                        :maxlength="200"
+                        :autosize="{ minRows: minRows}"
+                        @blur="minRows = 1"
+                        @focus="minRows = 10"
+                        v-model="newComment">
+                    <div slot="suffix">
+                        <el-button type="primary" size="mini" round>发送</el-button>
+                        <el-button size="mini">取消</el-button>
+                    </div>
+                </el-input>
+            </div>
         </el-dialog>
     </div>
 </template>
@@ -70,6 +93,9 @@
         extends: AutoLoadPager,
         data() {
             return {
+                minRows:1,
+                maxRows:1,
+                newComment:"",
                 changedTask: {},
                 newItem: {},
                 dialog: {
@@ -95,6 +121,20 @@
             }
         },
         methods: {
+            deleteTask() {
+
+                this.$confirm('确定删除任务' + this.dialog.item.name + "?", '删除', {
+                    type: 'warning'
+                }).then(() => {
+                    this.$api.task.delete(this.dialog.item.id).then(()=>{
+                        this.dialog.visible = false
+                        this.dialog.item = {}
+                        this.init()
+                    })
+
+                }).catch(() => {
+                    })
+            },
             start(e) {
                 console.log("拖动的任务编号是", e.item.id, "拖动的盒子是", e.from.id)
                 this.changedTask = {id: parseInt(e.item.id), box: e.from.id}
@@ -102,8 +142,8 @@
             end(e) {
                 let id = parseInt(e.clone.id)
                 let box = e.to.id
-                console.log("是否更新",id === this.changedTask.id && box !== this.changedTask.box,id === this.changedTask.id,box !== this.changedTask.box)
-                console.log(id , this.changedTask.id)
+                console.log("是否更新", id === this.changedTask.id && box !== this.changedTask.box, id === this.changedTask.id, box !== this.changedTask.box)
+                console.log(id, this.changedTask.id)
                 if (id === this.changedTask.id && box !== this.changedTask.box) {
                     this.changedTask.box = box
                     this.$api.task.update(this.changedTask).then(res => {
@@ -138,7 +178,9 @@
             },
             taskDetail(task, item) {
                 console.log("show task detail")
-                this.openDialog(task, item, "任务详情")
+                this.dialog.visible = true
+                this.dialog.item = item
+
 
             },
             openAddTask(task) {
@@ -248,4 +290,5 @@
         display: flex;
         flex-direction: column
     }
+
 </style>
