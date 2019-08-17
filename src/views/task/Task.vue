@@ -96,15 +96,18 @@
         },
         methods: {
             start(e) {
-                // console.log("拖动的任务编号是", e.item.id, "拖动的盒子是", e.from.id)
+                console.log("拖动的任务编号是", e.item.id, "拖动的盒子是", e.from.id)
                 this.changedTask = {id: parseInt(e.item.id), box: e.from.id}
             },
             end(e) {
-                let id = parseInt(e.item.id)
+                let id = parseInt(e.clone.id)
                 let box = e.to.id
+                console.log("是否更新",id === this.changedTask.id && box !== this.changedTask.box,id === this.changedTask.id,box !== this.changedTask.box)
+                console.log(id , this.changedTask.id)
                 if (id === this.changedTask.id && box !== this.changedTask.box) {
                     this.changedTask.box = box
                     this.$api.task.update(this.changedTask).then(res => {
+                        this.changedTask = {}
                         this.init()
                     })
                 }
