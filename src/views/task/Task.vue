@@ -53,8 +53,21 @@
                  style="display: flex;justify-content: space-between;border-bottom: #eee 1px solid;padding-bottom: 10px">
                 <span>{{dialog.item.name}}</span>
                 <div style="color: #a8a8a8">
-                    <span style="margin-left: 14px;cursor: pointer" class="el-icon-delete" @click="deleteTask"></span>
-                    <span style="margin-left: 14px">|</span>
+
+
+                    <el-dropdown trigger="click" @command="setting">
+                      <span style="margin-left: 14px;cursor: pointer;" class="el-icon-more-outline"></span>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item>设置每日循环任务</el-dropdown-item>
+                            <el-dropdown-item command="onfile">归档</el-dropdown-item>
+                            <el-dropdown-item command="delete">
+                                <span color="#F56C6C">删除</span>
+                            </el-dropdown-item>
+                            <!--                            <span style="cursor: pointer" class="el-icon-delete" @click="deleteTask">删除</span>-->
+                        </el-dropdown-menu>
+                    </el-dropdown>
+
+
                     <span style="margin-left: 14px;cursor: pointer;" class="el-icon-close"
                           @click="dialog.visible = false"></span>
                 </div>
@@ -93,9 +106,9 @@
         extends: AutoLoadPager,
         data() {
             return {
-                minRows:1,
-                maxRows:1,
-                newComment:"",
+                minRows: 1,
+                maxRows: 1,
+                newComment: "",
                 changedTask: {},
                 newItem: {},
                 dialog: {
@@ -107,6 +120,7 @@
                 context: this,
                 api: this.$api.task,
                 callback: this.grouping,
+                params: {onFile: false}, // list查询参数
                 group: {name: "group", put: true},
                 tasks: [
                     // 收件箱
@@ -121,19 +135,36 @@
             }
         },
         methods: {
+            setting(cmd) {
+                if (cmd === "delete") {
+                    this.deleteTask()
+                } else if (cmd === 'onfile') {
+                    this.onFile()
+                }
+            },
+            onFile() {
+                console.log("归档")
+                this.dialog.item.onFile = true
+                this.$api.task.update(this.dialog.item).then(()=>{
+                    this.dialog.visible = false
+                    this.dialog.item = {}
+                    this.init()
+                })
+
+            },
             deleteTask() {
 
                 this.$confirm('确定删除任务' + this.dialog.item.name + "?", '删除', {
                     type: 'warning'
                 }).then(() => {
-                    this.$api.task.delete(this.dialog.item.id).then(()=>{
+                    this.$api.task.delete(this.dialog.item.id).then(() => {
                         this.dialog.visible = false
                         this.dialog.item = {}
                         this.init()
                     })
 
                 }).catch(() => {
-                    })
+                })
             },
             start(e) {
                 console.log("拖动的任务编号是", e.item.id, "拖动的盒子是", e.from.id)

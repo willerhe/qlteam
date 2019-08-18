@@ -20,7 +20,8 @@
         },
         methods:{
           init(){
-              this.context.api.list().then(res => {
+              let params = this.context.params || {}
+              this.context.api.list(params).then(res => {
                   this.items = res.data
                   // 执行callback
                   if (this.context.callback) {
