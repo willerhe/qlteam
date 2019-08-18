@@ -56,7 +56,7 @@
 
 
                     <el-dropdown trigger="click" @command="setting">
-                      <span style="margin-left: 14px;cursor: pointer;" class="el-icon-more-outline"></span>
+                        <span style="margin-left: 14px;cursor: pointer;" class="el-icon-more-outline"></span>
                         <el-dropdown-menu slot="dropdown">
                             <el-dropdown-item>设置每日循环任务</el-dropdown-item>
                             <el-dropdown-item command="onfile">归档</el-dropdown-item>
@@ -145,7 +145,7 @@
             onFile() {
                 console.log("归档")
                 this.dialog.item.onFile = true
-                this.$api.task.update(this.dialog.item).then(()=>{
+                this.$api.task.update(this.dialog.item).then(() => {
                     this.dialog.visible = false
                     this.dialog.item = {}
                     this.init()
