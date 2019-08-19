@@ -2,7 +2,8 @@
     <transition name="el-zoom-in-center">
         <div class="login-form">
             <div style="width: 400px" class="inner-form">
-                <h2>登录</h2>
+                <h2 style="margin: 0px;color: #4B62EA" >登录</h2>
+                <p style="color: #ABA4BB;margin: 0px;margin-bottom: 7px">请使用您本人的账号密码登录</p>
                 <el-input
                         placeholder="账号"
                         v-model="user.account"
@@ -16,7 +17,7 @@
                         style="margin-bottom: 14px"
                         prefix-icon="el-icon-lock">
                 </el-input>
-                <el-button type="primary" @click="login" class="full">登录</el-button>
+                <el-button type="primary" round @click="login" class="full">登录</el-button>
 
                 <div style="display: flex;justify-content: space-between;padding: 7px;font-size: 12px">
                     <router-link to="/sys/register" style="text-decoration: none">
@@ -57,13 +58,11 @@
     .login-form {
         min-width: 600px;
         flex-grow: 3;
-        border: solid 1px #cccc;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
         padding: 20px;
-        border-radius: 3px;
 
     }
 

@@ -9,6 +9,8 @@ import fullCalendar from 'vue-fullcalendar'
 import api from "./api/api";
 import filters from "./filter";
 
+import './global.scss'
+
 Vue.use(ElementUI)
 Vue.component('full-calendar', fullCalendar)
 

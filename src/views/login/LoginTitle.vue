@@ -1,6 +1,6 @@
 <template>
     <div class="login-title">
-       <h1>轻量级团队协作工具</h1>
+       <h1></h1>
     </div>
 </template>
 
@@ -17,5 +17,6 @@
         justify-content: center;
         align-items: center;
         flex-grow: 3;
+        color: #485EE0;
     }
 </style>
