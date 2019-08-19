@@ -1,7 +1,7 @@
 <template>
     <div class="login-form">
         <div style="width: 400px">
-            <h2>注册</h2>
+            <h2 style="color: #4B62EA">注册</h2>
             <el-form :rules="rules" ref="form" :model="user">
                 <el-form-item prop="nickName">
                     <el-input
@@ -98,13 +98,11 @@
     .login-form {
         min-width: 600px;
         flex-grow: 3;
-        border: solid 1px #cccc;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
         padding: 20px;
-        border-radius: 3px;
 
     }
     .el-form-item{
