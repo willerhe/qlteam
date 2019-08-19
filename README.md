@@ -31,13 +31,11 @@ qlteam 是一个为小型团队轻量级的项目管理工具,qlteam诞生之初
 
 
 ## 界面
-![image](https://github.com/willerhe/qlteam/blob/master/doc/story.png)
+![image](https://github.com/willerhe/qlteam/blob/master/doc/login.png)
 
 ![image](https://github.com/willerhe/qlteam/blob/master/doc/task.png)
 
-![image](https://github.com/willerhe/qlteam/blob/master/doc/document.png)
 
-![image](https://github.com/willerhe/qlteam/blob/master/doc/daily.png)
 
 
 ## Project setup
