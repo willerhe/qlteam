@@ -1,14 +1,15 @@
 <template>
     <div>
+
         <transition name="el-zoom-in-center">
             <div class="task">
+<!--                <project-side-bar style="width: 260px;height: 100vh;margin-left: -11px;margin-right: 0px"></project-side-bar>-->
                 <div class="task-1"
                      v-for="task in tasks">
                     <p align="center">{{task.label}}</p>
                     <div class="task-content" style="min-height: 5px">
                         <draggable :group="group" :list="task.data"
                                    style="padding: 5px;" :id="task.name" @start="start" @end="end" :move="move">
-                            <!--          todo 拖动的id 是本列的最后一个的id                   -->
                             <div :key="'k'+index" v-for="(i,index) in task.data"
                                  @click="taskDetail(task,i)" :id="i.id">
                                 <task-item :item="i"></task-item>
@@ -91,6 +92,7 @@
                 </el-input>
             </div>
         </el-dialog>
+
     </div>
 </template>
 
@@ -98,11 +100,12 @@
     import draggable from 'vuedraggable'
     import TaskItem from "../../components/TaskItem";
     import AutoLoadPager from "../../components/AutoLoadPager";
+    import ProjectSideBar from "../../components/ProjectSideBar";
 
 
     export default {
         name: "Home",
-        components: {draggable, TaskItem},
+        components: {draggable, TaskItem,ProjectSideBar},
         extends: AutoLoadPager,
         data() {
             return {

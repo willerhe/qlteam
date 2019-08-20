@@ -1,7 +1,7 @@
 <template>
     <div style="display: flex">
-        <project-side-bar style="width: 200px;height: 100vh"></project-side-bar>
-        <div style="background-color: white;margin-left: 8px;padding: 7px;width: 100%">
+        <project-side-bar style="width: 260px;height: 100vh;margin-left: -11px;margin-right: 0px"></project-side-bar>
+        <div style="background-color: white;padding: 7px;width: 100%">
             <el-tabs v-model="activeTab">
                 <el-tab-pane label="任务视图" name="task">
                     <project-task></project-task>
@@ -32,5 +32,6 @@
 </script>
 
 <style scoped>
+
 
 </style>

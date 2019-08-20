@@ -23,6 +23,12 @@ export const SideMenu = [
         title: "任务",
         icon: "el-icon-menu",
         component: Task
+    },{
+        path: '/ql/project',
+        name: "project",
+        title: "项目",
+        icon: "el-icon-files",
+        component: Project,
     }, {
 
         path: '/ql/story',
@@ -32,13 +38,7 @@ export const SideMenu = [
         component: Story
     },
 
-    {
-        path: '/ql/project',
-        name: "project",
-        title: "项目",
-        icon: "el-icon-files",
-        component: Project,
-    },
+
     {
         path: '/ql/project/:id',
         name: "project.story",
