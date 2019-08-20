@@ -1,46 +1,48 @@
 <template>
     <div>
-
         <transition name="el-zoom-in-center">
             <div class="task">
-<!--                <project-side-bar style="width: 260px;height: 100vh;margin-left: -11px;margin-right: 0px"></project-side-bar>-->
-                <div class="task-1"
-                     v-for="task in tasks">
-                    <p align="center">{{task.label}}</p>
-                    <div class="task-content" style="min-height: 5px">
-                        <draggable :group="group" :list="task.data"
-                                   style="padding: 5px;" :id="task.name" @start="start" @end="end" :move="move">
-                            <div :key="'k'+index" v-for="(i,index) in task.data"
-                                 @click="taskDetail(task,i)" :id="i.id">
-                                <task-item :item="i"></task-item>
-                            </div>
-                        </draggable>
-                    </div>
-                    <div class="add-item" @click.stop="openAddTask(task)" v-if="!task.addTaskAreaVisible">
-                        <div>
-                            <span class="el-icon-plus add-item-1"></span>
-                            <span class="add-item-2">添加新任务</span>
+                <project-side-bar
+                        style="width: 260px;margin-left: -11px;margin-right: 0px"></project-side-bar>
+                <div style="width: 100%">
+                    <div class="task-1"
+                         v-for="task in tasks">
+                        <p align="center">{{task.label}}</p>
+                        <div class="task-content" style="min-height: 5px">
+                            <draggable :group="group" :list="task.data"
+                                       style="padding: 5px;" :id="task.name" @start="start" @end="end" :move="move">
+                                <div :key="'k'+index" v-for="(i,index) in task.data"
+                                     @click="taskDetail(task,i)" :id="i.id">
+                                    <task-item :item="i"></task-item>
+                                </div>
+                            </draggable>
                         </div>
-                    </div>
-                    <transition name="el-zoom-in-top">
-                        <div class="add-item-area" v-show="task.addTaskAreaVisible"
-                             @click.stop="">
-
-                            <el-input
-                                    type="textarea"
-                                    :autosize="{ minRows: 3, maxRows: 8}"
-                                    placeholder="任务内容"
-                                    v-model="newItem.describe">
-                            </el-input>
-                            <div style="display: flex;flex-direction: row;justify-content: flex-start;margin: 7px">
-                                <el-button type="primary" size="mini" round @click="privateSaveNewItem(task)">确定
-                                </el-button>
-                                <el-button plain round @click.stop="task.addTaskAreaVisible = false" size="mini">取消
-                                </el-button>
+                        <div class="add-item" @click.stop="openAddTask(task)" v-if="!task.addTaskAreaVisible">
+                            <div>
+                                <span class="el-icon-plus add-item-1"></span>
+                                <span class="add-item-2">添加新任务</span>
                             </div>
                         </div>
-                    </transition>
+                        <transition name="el-zoom-in-top">
+                            <div class="add-item-area" v-show="task.addTaskAreaVisible"
+                                 @click.stop="">
 
+                                <el-input
+                                        type="textarea"
+                                        :autosize="{ minRows: 3, maxRows: 8}"
+                                        placeholder="任务内容"
+                                        v-model="newItem.describe">
+                                </el-input>
+                                <div style="display: flex;flex-direction: row;justify-content: flex-start;margin: 7px">
+                                    <el-button type="primary" size="mini" round @click="privateSaveNewItem(task)">确定
+                                    </el-button>
+                                    <el-button plain round @click.stop="task.addTaskAreaVisible = false" size="mini">取消
+                                    </el-button>
+                                </div>
+                            </div>
+                        </transition>
+
+                    </div>
                 </div>
             </div>
         </transition>
@@ -105,7 +107,7 @@
 
     export default {
         name: "Home",
-        components: {draggable, TaskItem,ProjectSideBar},
+        components: {draggable, TaskItem, ProjectSideBar},
         extends: AutoLoadPager,
         data() {
             return {
@@ -303,8 +305,8 @@
     }
 
     .task {
-        display: block;
-        overflow-wrap: unset;
+        display: flex;
+        justify-content: space-between;
     }
 
     /*todo 怎么把width 设置成25%  盒子还能够在一行展示*/
@@ -313,7 +315,7 @@
         flex-direction: column;
         justify-content: flex-start;
         width: 24%;
-        margin: 7px;
+        margin-left: 7px;
         background: #fff;
         border-radius: 3px;
     }
@@ -324,5 +326,13 @@
         display: flex;
         flex-direction: column
     }
+
+    .parent-task {
+        display: block;
+        overflow-wrap: unset;
+
+    }
+
+
 
 </style>

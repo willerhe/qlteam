@@ -6,10 +6,10 @@
                  text-color="#545c64"
                  active-text-color="#ffd04b">
             <div style="display: flex;justify-content: space-between;padding-left: 20px;padding-right: 20px;border-bottom: 1px solid #eee">
-                <p>项目列表</p>
+                <p>列表</p>
                 <div style="display: flex;justify-content: center;align-items: center">
                     <a>
-                        <span class="el-icon-menu add" style="cursor: pointer"></span>
+                        <span class="el-icon-menu add" style="cursor: pointer" @click="openAdd"></span>
                     </a>
 
                 </div>
@@ -44,11 +44,14 @@
             return {
                 activeItem: "/task",
                 projectUrl: "/project/",
-                projects: [{id: 1, name: "项目1"}, {id: 2, name: "项目2"}],
+                projects: [{id: 1, name: "小龙虾小程序商城"}, {id: 2, name: "小西门物联网"}],
                 menus: []
             }
         },
         methods: {
+            openAdd(){
+              this.$message.success("todo 选择模板以新建项目")
+            },
             routeChange(to, from) {
                 this.rememberMe()
             },
