@@ -12,7 +12,10 @@
 
     export default {
         name: "SideLayout",
-        components: {MenuBar}
+        components: {MenuBar},
+        mounted() {
+            this.$router.push("/ql/task")
+        }
     }
 </script>
 
