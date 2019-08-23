@@ -3,14 +3,15 @@
         <transition name="el-zoom-in-center">
             <div class="task">
                 <project-side-bar
-                        style="width: 260px;margin-left: -11px;margin-right: 0px"></project-side-bar>
+                        style="width: 240px;margin-left: -11px;margin-right: 0px"></project-side-bar>
                 <div style="width: 100%;">
                     <div style="display: flex;justify-content: center;background:white;border-bottom: 1px solid #eee">
-                        <el-menu default-active="1" class="el-menu-demo" mode="horizontal" style="height: 55px">
-                            <el-menu-item index="1">我负责的</el-menu-item>
-                            <el-menu-item index="3">我分配的</el-menu-item>
-                            <el-menu-item index="4">我参与的</el-menu-item>
-                            <el-menu-item index="5">我创建的</el-menu-item>
+                        <el-menu :default-active="defaultActive" class="el-menu-demo" mode="horizontal"
+                                 style="height: 55px;display: flex;justify-content: center">
+                            <router-link :to="m.path" v-for="(m,i) in tabMenus" :key="i" style="text-decoration: none">
+                                <el-menu-item :index="m.path">{{m.name}}</el-menu-item>
+                            </router-link>
+
                         </el-menu>
                     </div>
                     <!--  盒子区域              //-->
@@ -34,10 +35,42 @@
     export default {
         name: "Task",
         components: {ProjectSideBar},
-        data() {
-            return {}
+        watch: {
+            $route: {
+                handler: 'routeChange',
+                immediate: true
+
+            }
         },
-        methods: {},
+        data() {
+            return {
+                defaultActive: '',
+                tabMenus: [
+                    {
+                        path: '/ql/task/responsible',
+                        name: '我负责的'
+                    },
+                    {
+                        path: '/ql/task/distribution',
+                        name: '我分配的'
+                    },
+                    {
+                        path: '/ql/task/involved',
+                        name: '我参与的'
+                    },
+                    {
+                        path: '/ql/task/establish',
+                        name: '我创建的'
+                    },
+                ]
+            }
+        },
+        methods: {
+            routeChange() {
+                this.defaultActive = this.$route.fullPath
+                console.log('this.defaultActive', this.defaultActive)
+            }
+        },
         mounted() {
         }
     }

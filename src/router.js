@@ -27,9 +27,10 @@ export const SideMenu = [
         title: "任务",
         icon: "el-icon-menu",
         component: Task,
+        redirect:'/ql/task/responsible',
         children:[
             {
-                path:'',
+                path:'/ql/task/responsible',
                 name:"responsible",
                 title:"我负责的",
                 component:Responsible
