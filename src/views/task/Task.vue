@@ -4,46 +4,65 @@
             <div class="task">
                 <project-side-bar
                         style="width: 260px;margin-left: -11px;margin-right: 0px"></project-side-bar>
-                <div style="width: 100%">
-                    <div class="task-1"
-                         v-for="task in tasks">
-                        <p align="center">{{task.label}}</p>
-                        <div class="task-content" style="min-height: 5px">
-                            <draggable :group="group" :list="task.data"
-                                       style="padding: 5px;" :id="task.name" @start="start" @end="end" :move="move">
-                                <div :key="'k'+index" v-for="(i,index) in task.data"
-                                     @click="taskDetail(task,i)" :id="i.id">
-                                    <task-item :item="i"></task-item>
-                                </div>
-                            </draggable>
-                        </div>
-                        <div class="add-item" @click.stop="openAddTask(task)" v-if="!task.addTaskAreaVisible">
-                            <div>
-                                <span class="el-icon-plus add-item-1"></span>
-                                <span class="add-item-2">添加新任务</span>
-                            </div>
-                        </div>
-                        <transition name="el-zoom-in-top">
-                            <div class="add-item-area" v-show="task.addTaskAreaVisible"
-                                 @click.stop="">
+                <div style="width: 100%;">
+                    <div style="display: flex;justify-content: center;background:white;border-bottom: 1px solid #eee">
+                        <el-menu default-active="1" class="el-menu-demo" mode="horizontal" style="height: 55px">
+                            <el-menu-item index="1">我负责的</el-menu-item>
+                            <el-menu-item index="3">我分配的</el-menu-item>
+                            <el-menu-item index="4">我参与的</el-menu-item>
+                            <el-menu-item index="5">我创建的</el-menu-item>
+                        </el-menu>
+                    </div>
+                    <!--  盒子区域              //-->
+                    <div style="width: 100%;display: flex;justify-content: space-between;margin-top: 7px;">
+                        <div style="flex-grow: 1;flex-basis: auto;background: white;align-self: flex-start;margin-left: 7px;margin-right: 7px"
+                             v-for="task in tasks">
+                            <p align="center">{{task.label}}</p>
 
-                                <el-input
-                                        type="textarea"
-                                        :autosize="{ minRows: 3, maxRows: 8}"
-                                        placeholder="任务内容"
-                                        v-model="newItem.describe">
-                                </el-input>
-                                <div style="display: flex;flex-direction: row;justify-content: flex-start;margin: 7px">
-                                    <el-button type="primary" size="mini" round @click="privateSaveNewItem(task)">确定
-                                    </el-button>
-                                    <el-button plain round @click.stop="task.addTaskAreaVisible = false" size="mini">取消
-                                    </el-button>
+                            <div class="task-content" style="min-height: 5px;">
+                                <draggable :group="group" :list="task.data"
+                                           style="padding: 5px;" :id="task.name" @start="start" @end="end" :move="move">
+                                    <div :key="'k'+index" v-for="(i,index) in task.data"
+                                         @click="taskDetail(task,i)" :id="i.id">
+                                        <task-item :item="i"></task-item>
+                                    </div>
+                                </draggable>
+                            </div>
+
+
+                            <div class="add-item" @click.stop="openAddTask(task)" v-if="!task.addTaskAreaVisible">
+                                <div>
+                                    <span class="el-icon-plus add-item-1"></span>
+                                    <span class="add-item-2">添加新任务</span>
                                 </div>
                             </div>
-                        </transition>
 
+                            <!--                        // 添加区域-->
+                            <transition name="el-zoom-in-top">
+                                <div class="add-item-area" v-show="task.addTaskAreaVisible"
+                                     @click.stop="">
+                                    <el-input
+                                            type="textarea"
+                                            size="mini"
+                                            :autosize="{ minRows: 3, maxRows: 8}"
+                                            placeholder="输入任务内容"
+                                            v-model="newItem.describe">
+                                    </el-input>
+                                    <div style="display: flex;flex-direction: row;justify-content: flex-start;margin: 7px">
+                                        <el-button type="primary" size="mini" round @click="privateSaveNewItem(task)">确定
+                                        </el-button>
+                                        <el-button plain round @click.stop="task.addTaskAreaVisible = false"
+                                                   size="mini">取消
+                                        </el-button>
+                                    </div>
+                                </div>
+                            </transition>
+
+                        </div>
                     </div>
                 </div>
+
+
             </div>
         </transition>
 
@@ -111,6 +130,7 @@
         extends: AutoLoadPager,
         data() {
             return {
+                viewType: "",
                 minRows: 1,
                 maxRows: 1,
                 newComment: "",
@@ -140,6 +160,9 @@
             }
         },
         methods: {
+            handleClick() {
+                console.log('handle')
+            },
             setting(cmd) {
                 if (cmd === "delete") {
                     this.deleteTask()
@@ -288,9 +311,9 @@
     .add-item-area {
         display: flex;
         flex-direction: column;
-        padding: 7px;
         align-items: center;
-        cursor: pointer
+        cursor: pointer;
+        padding: 7px;
     }
 
     .add-item-1 {
@@ -314,8 +337,6 @@
         display: inline-flex;
         flex-direction: column;
         justify-content: flex-start;
-        width: 24%;
-        margin-left: 7px;
         background: #fff;
         border-radius: 3px;
     }
@@ -332,7 +353,6 @@
         overflow-wrap: unset;
 
     }
-
 
 
 </style>
