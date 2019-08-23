@@ -15,12 +15,8 @@
                 </div>
 
             </div>
-            <router-link :to="projectUrl+item.id" style="text-decoration: none" v-for="(item,i) in menus"
-                         :key="item.id">
-                <el-menu-item :index="'f'+item.id">
-                    <span slot="title">{{item.name}}</span>
-                </el-menu-item>
-            </router-link>
+            <el-tree :data="views"  highlight-current default-expand-all :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+            <el-tree :data="projectMenus" highlight-current default-expand-all :props="defaultProps" @node-click="handleNodeClick"></el-tree>
 
         </el-menu>
     </div>
@@ -42,6 +38,30 @@
         },
         data() {
             return {
+                views: [{
+                    label: '视图',
+                    children: [{
+                        label: '我的任务'
+                    }, {
+                        label: '统计视图'
+                    }, {
+                        label: '日历视图`'
+                    },]
+                }],
+                projectMenus: [{
+                    label: '项目',
+                    children: [{
+                        label: '小东门项目'
+                    }, {
+                        label: '沃尔夫物联网'
+                    }, {
+                        label: '世瑞小龙虾`'
+                    },]
+                }],
+                defaultProps: {
+                    children: 'children',
+                    label: 'label'
+                },
                 activeItem: "/task",
                 projectUrl: "/project/",
                 projects: [{id: 1, name: "小龙虾小程序商城"}, {id: 2, name: "小西门物联网"}],
@@ -49,8 +69,11 @@
             }
         },
         methods: {
-            openAdd(){
-              this.$message.success("todo 选择模板以新建项目")
+            handleNodeClick(data) {
+                console.log(data);
+            },
+            openAdd() {
+                this.$message.success("todo 选择模板以新建项目")
             },
             routeChange(to, from) {
                 this.rememberMe()
@@ -74,7 +97,7 @@
 </script>
 
 <style scoped lang="scss">
-    a:hover{
+    a:hover {
         color: #1D63D7;
     }
 </style>

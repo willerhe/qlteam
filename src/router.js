@@ -14,6 +14,10 @@ import Story from "./views/story/Story";
 import SideLayout from "./layout/SideLayout";
 import BlankLayout from "./layout/BlankLayout";
 import Register from "./views/login/Register";
+import Responsible from "./views/task/sub/Responsible";
+import Distribution from "./views/task/sub/Distribution";
+import Involved from "./views/task/sub/Involved";
+import Establish from "./views/task/sub/Establish";
 
 export const SideMenu = [
     {
@@ -22,7 +26,33 @@ export const SideMenu = [
         name: "task",
         title: "任务",
         icon: "el-icon-menu",
-        component: Task
+        component: Task,
+        children:[
+            {
+                path:'',
+                name:"responsible",
+                title:"我负责的",
+                component:Responsible
+            },
+            {
+                path:'/ql/task/distribution',
+                name:"distribution",
+                title:"我分配的",
+                component:Distribution
+            },
+            {
+                path:'/ql/task/involved',
+                name:"involved",
+                title:"我参与的",
+                component:Involved
+            },
+            {
+                path:'/ql/task/establish',
+                name:"establish",
+                title:"我创建的",
+                component:Establish
+            }
+        ]
     },{
         path: '/ql/project',
         name: "project",
