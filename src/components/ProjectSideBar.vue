@@ -15,8 +15,9 @@
                 </div>
 
             </div>
-            <el-tree :data="views"  highlight-current default-expand-all :props="defaultProps" @node-click="handleNodeClick"></el-tree>
-            <el-tree :data="projectMenus" highlight-current default-expand-all :props="defaultProps" @node-click="handleNodeClick"></el-tree>
+            <el-tree :data="views" highlight-current default-expand-all :props="defaultProps"></el-tree>
+            <el-tree :data="projectMenus" highlight-current default-expand-all :props="defaultProps"
+                     @node-click="clickProject"></el-tree>
 
         </el-menu>
     </div>
@@ -39,38 +40,40 @@
         data() {
             return {
                 views: [{
-                    label: '视图',
+                    name: '视图',
                     children: [{
-                        label: '我的任务'
+                        name: '我的任务'
                     }, {
-                        label: '统计视图'
+                        name: '统计视图'
                     }, {
-                        label: '日历视图`'
+                        name: '日历视图`'
                     },]
                 }],
                 projectMenus: [{
-                    label: '项目',
+                    name: '项目',
                     children: [{
-                        label: '小东门项目'
+                        name: '小东门项目'
                     }, {
-                        label: '沃尔夫物联网'
+                        name: '沃尔夫物联网'
                     }, {
-                        label: '世瑞小龙虾`'
+                        name: '世瑞小龙虾`'
                     },]
                 }],
                 defaultProps: {
                     children: 'children',
-                    label: 'label'
+                    label: 'name'
                 },
                 activeItem: "/task",
                 projectUrl: "/project/",
-                projects: [{id: 1, name: "小龙虾小程序商城"}, {id: 2, name: "小西门物联网"}],
                 menus: []
             }
         },
         methods: {
-            handleNodeClick(data) {
-                console.log(data);
+            clickProject(project) {
+                console.log(project.id);
+                let param = {projectId: project.id}
+
+
             },
             openAdd() {
                 this.$message.success("todo 选择模板以新建项目")
@@ -85,13 +88,17 @@
             loadMenus() {
                 this.menus = this.projects
             },
+            loadProjects() {
+                this.$api.project.list().then(res => {
+                    this.projectMenus[0].children = res.data
+                    console.log(this.projectMenus[0].children)
+                })
+            }
 
 
         },
         mounted() {
-            this.loadMenus()
-
-
+            this.loadProjects()
         }
     }
 </script>

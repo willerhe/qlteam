@@ -55,8 +55,6 @@
                  style="display: flex;justify-content: space-between;border-bottom: #eee 1px solid;padding-bottom: 10px">
                 <span>{{dialog.item.name}}</span>
                 <div style="color: #a8a8a8">
-
-
                     <el-dropdown trigger="click" @command="setting">
                         <span style="margin-left: 14px;cursor: pointer;" class="el-icon-more-outline"></span>
                         <el-dropdown-menu slot="dropdown">
