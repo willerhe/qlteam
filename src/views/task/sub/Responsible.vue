@@ -50,6 +50,7 @@
                 :title="dialog.title"
                 :visible.sync="dialog.visible"
                 width="45%"
+                @closed="init"
                 :before-close="handleClose" :show-close="false">
             <div slot="title"
                  style="display: flex;justify-content: space-between;border-bottom: #eee 1px solid;padding-bottom: 10px">
@@ -73,21 +74,66 @@
                 </div>
             </div>
             <p style="font-size: 20px;color: #333333;margin: 0px">{{dialog.item.describe}}</p>
+            <div style="display: flex;justify-content: space-between;flex-grow: 1;margin-top: 7px">
+                <div style="width: 20%;align-items: center;display: flex;justify-content: flex-start">
+                    <span class="el-icon-remove-outline" style="font-size: 50px;color: orangered"></span>
+                    <div style="margin-left: 7px;display: flex;flex-direction: column;">
+                        <span>未开始</span>
+                        <span style="color: #929292;font-size: smaller">当前状态</span>
+                    </div>
+                </div>
+
+                <!--      下拉框   选择负责人          -->
+
+
+                <div style="width: 20%;align-items: center;display: flex;justify-content: flex-start">
+
+
+                    <el-dropdown trigger="click" @command="changeLeader">
+                        <div class="avatar">作伟</div>
+                        <el-dropdown-menu slot="dropdown">
+                            <el-dropdown-item v-for="u in projectUsers" :key="u.id" :command="u.id">{{u.nickName}}
+                            </el-dropdown-item>
+                        </el-dropdown-menu>
+                    </el-dropdown>
+
+                    <div style="margin-left: 14px;display: flex;flex-direction: column;">
+                        <span>贺作伟</span>
+                        <span style="color: #929292;font-size: smaller">负责人</span>
+                    </div>
+                </div>
+
+
+                <div style="width: 20%;align-items: center;display: flex;justify-content: flex-start">
+                    <span class="el-icon-alarm-clock" style="font-size: 50px;color: #939393"></span>
+                    <div style="margin-left: 7px;display: flex;flex-direction: column;">
+                        <span>todo</span>
+                        <span style="color: #929292;font-size: smaller">开始时间</span>
+                    </div>
+                </div>
+                <div style="width: 20%;align-items: center;display: flex;justify-content: flex-start">
+                    <span class="el-icon-alarm-clock" style="font-size: 50px;color: #939393"></span>
+                    <div style="margin-left: 7px;display: flex;flex-direction: column;">
+                        <span>todo</span>
+                        <span style="color: #929292;font-size: smaller">结束时间</span>
+                    </div>
+                </div>
+            </div>
             <div slot="footer" class="dialog-footer" style="border-top: #eee solid 1px;padding-top: 14px">
                 <el-input
                         type="text"
                         show-word-limit
                         autosize
-                        placeholder="写评论"
+                        placeholder="todo 写评论"
                         :maxlength="200"
                         :autosize="{ minRows: minRows}"
                         @blur="minRows = 1"
                         @focus="minRows = 10"
                         v-model="newComment">
-                    <div slot="suffix">
-                        <el-button type="primary" size="mini" round>发送</el-button>
-                        <el-button size="mini">取消</el-button>
-                    </div>
+                    <!--                    <div slot="suffix">-->
+                    <!--                        <el-button type="primary" size="mini" round>发送</el-button>-->
+                    <!--                        <el-button size="mini">取消</el-button>-->
+                    <!--                    </div>-->
                 </el-input>
             </div>
         </el-dialog>
@@ -107,6 +153,7 @@
         extends: AutoLoadPager,
         data() {
             return {
+                projectUsers: [],
                 viewType: "",
                 minRows: 1,
                 maxRows: 1,
@@ -137,6 +184,14 @@
             }
         },
         methods: {
+            changeLeader(userid) {
+                console.log('更改', this.dialog.item, userid)
+                this.dialog.item.leader = userid
+                this.dialog.item.box = 'inbox'
+                this.$api.task.update(this.dialog.item).then(res => {
+                    this.$message.success('分配成功')
+                })
+            },
             handleClick() {
                 console.log('handle')
             },
@@ -261,9 +316,16 @@
                     }
 
                 }
+            },
+            loadProjectUsers() {
+                this.$api.user.list().then(res => {
+                    this.projectUsers = res.data.data
+                    console.log("projectUsers", this.projectUsers)
+                })
             }
         },
         mounted() {
+            this.loadProjectUsers()
             let _this = this
             document.onclick = function () {
                 for (let t of _this.tasks) {
@@ -330,6 +392,22 @@
         display: block;
         overflow-wrap: unset;
 
+    }
+
+    .avatar {
+        width: 45px;
+        height: 45px;
+        border-radius: 50px;
+        /*//#66CCFF*/
+        background: #9966FF;
+        font-size: 16px;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        display: flex;
+        padding: 1px;
+        cursor: pointer;
     }
 
 
