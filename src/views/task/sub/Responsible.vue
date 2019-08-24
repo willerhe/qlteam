@@ -1,7 +1,7 @@
 <template>
     <div>
         <div style="width: 100%;display: flex;justify-content: space-between;margin-top: 7px;">
-            <div style="flex-grow: 1;flex-basis: auto;background: white;align-self: flex-start;margin-left: 7px;margin-right: 7px"
+            <div style="width: 25%;flex-grow: 1;flex-basis: auto;background: white;align-self: flex-start;margin-left: 7px;margin-right: 7px"
                  v-for="task in tasks">
                 <p align="center">{{task.label}}</p>
 

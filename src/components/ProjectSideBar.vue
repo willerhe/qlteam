@@ -15,7 +15,8 @@
                 </div>
 
             </div>
-            <el-tree :data="views" highlight-current default-expand-all :props="defaultProps"></el-tree>
+            <el-tree :data="views" highlight-current default-expand-all @node-click="clickView"
+                     :props="defaultProps"></el-tree>
             <el-tree :data="projectMenus" highlight-current default-expand-all :props="defaultProps"
                      @node-click="clickProject"></el-tree>
 
@@ -42,11 +43,14 @@
                 views: [{
                     name: '视图',
                     children: [{
-                        name: '我的任务'
+                        name: '我的任务',
+                        path: '/ql/task/responsible'
                     }, {
-                        name: '统计视图'
+                        name: '统计视图',
+                        path: '/ql/task/responsible'
                     }, {
-                        name: '日历视图`'
+                        name: '日历视图`',
+                        path: '/ql/task/responsible'
                     },]
                 }],
                 projectMenus: [{
@@ -69,8 +73,15 @@
             }
         },
         methods: {
+            clickView(view) {
+                console.log(view)
+                if (view.path) {
+                    this.$router.push(view.path)
+                }
+
+            },
             clickProject(project) {
-                console.log(project.id);
+                console.log(project.id)
                 let param = {projectId: project.id}
 
 
