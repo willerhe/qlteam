@@ -5,7 +5,7 @@ import router from "../../router";
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 const http = axios.create({
-    baseURL: "http://127.0.0.1:9900/api/v1",
+    baseURL: "http://106.15.178.205:9900/api/v1",
     withCredentials: true,
 })
 

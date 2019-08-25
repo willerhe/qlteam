@@ -352,7 +352,7 @@
                 let userId = window.localStorage.getItem("id")
                 console.log('当前的user', userId)
                 // todo 检查 localStorage
-                this.ws = new WebSocket('ws://127.0.0.1:9900/ws/' + userId)
+                this.ws = new WebSocket('ws://106.15.178.205:9900/ws/' + userId)
                 let that = this
                 this.ws.onmessage = function (msg) {
                     that.playTips()
