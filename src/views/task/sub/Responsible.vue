@@ -375,6 +375,8 @@
             }
         },
         destroyed() {
+            let userId = window.localStorage.getItem("id")
+            this.$api.ws.offline(userId)
             console.log('销毁websocket')
         }
     }
