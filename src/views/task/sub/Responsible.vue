@@ -154,6 +154,7 @@
         extends: AutoLoadPager,
         data() {
             return {
+                ws:null,
                 projectUsers: [],
                 viewType: "",
                 minRows: 1,
@@ -190,13 +191,14 @@
                     title: '新的任务',
                     message: '您有新的任务，请前往任务收件箱查看。',
                     position: 'bottom-right',
-                    type:'success',
-                    onClick:function(){
-                      console.log('点击了')
+                    type: 'success',
+                    onClick: function () {
+                        console.log('点击了')
                         notify.close()
                     },
-                    duration:10000
+                    duration: 10000
                 });
+                this.init()
 
                 let audio = new Audio();
                 audio.src = mp3;
@@ -208,6 +210,9 @@
                 this.dialog.item.box = 'inbox'
                 this.$api.task.update(this.dialog.item).then(res => {
                     this.$message.success('分配成功')
+                    this.$api.ws.dispatch(userid,"hello")
+
+
                 })
             },
             handleClick() {
@@ -339,14 +344,27 @@
                 this.$api.user.list().then(res => {
                     this.projectUsers = res.data.data
                     console.log("projectUsers", this.projectUsers)
-                    this.playTips()
+
 
                 })
+            },
+            initWebSocket() {
+                let userId = window.localStorage.getItem("id")
+                console.log('当前的user', userId)
+                // todo 检查 localStorage
+                this.ws = new WebSocket('ws://127.0.0.1:9900/ws/' + userId)
+                let that = this
+                this.ws.onmessage = function (msg) {
+                    that.playTips()
+                }
+                this.ws.onopen = function () {
+                    console.log('连接完成')
+                }
             }
         },
         mounted() {
 
-
+            this.initWebSocket()
             this.loadProjectUsers()
             let _this = this
             document.onclick = function () {
@@ -355,6 +373,9 @@
                     _this.newItem = {}
                 }
             }
+        },
+        destroyed() {
+            console.log('销毁websocket')
         }
     }
 </script>

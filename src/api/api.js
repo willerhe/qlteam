@@ -12,8 +12,24 @@ api.login = function (obj) {
 }
 
 api.register = function (obj) {
-    return http.post("/register",obj)
+    return http.post("/register", obj)
 }
+
+
+
+import axios from 'axios'
+const plain = axios.create({
+    baseURL: "http://127.0.0.1:9900/",
+})
+
+api.ws = {}
+api.ws.dispatch = function (id, msg) {
+    return plain.put('/ws/' + id, msg)
+}
+api.ws.offline = function (id) {
+    return plain.delete('/ws/' + id)
+}
+
 
 api.http = http
 export default api
