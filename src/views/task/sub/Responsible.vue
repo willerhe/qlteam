@@ -145,6 +145,7 @@
     import draggable from 'vuedraggable'
     import AutoLoadPager from "../../../components/AutoLoadPager";
     import TaskItem from "../../../components/TaskItem";
+    import mp3 from '../../../assets/tip.mp3'
 
 
     export default {
@@ -184,6 +185,23 @@
             }
         },
         methods: {
+            playTips() {
+                let notify = this.$notify({
+                    title: '新的任务',
+                    message: '您有新的任务，请前往任务收件箱查看。',
+                    position: 'bottom-right',
+                    type:'success',
+                    onClick:function(){
+                      console.log('点击了')
+                        notify.close()
+                    },
+                    duration:10000
+                });
+
+                let audio = new Audio();
+                audio.src = mp3;
+                audio.play()
+            },
             changeLeader(userid) {
                 console.log('更改', this.dialog.item, userid)
                 this.dialog.item.leader = userid
@@ -321,10 +339,14 @@
                 this.$api.user.list().then(res => {
                     this.projectUsers = res.data.data
                     console.log("projectUsers", this.projectUsers)
+                    this.playTips()
+
                 })
             }
         },
         mounted() {
+
+
             this.loadProjectUsers()
             let _this = this
             document.onclick = function () {

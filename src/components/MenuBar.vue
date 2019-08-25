@@ -3,14 +3,14 @@
         <el-menu style="height: 100vh"
                  :default-active="activeItem"
                  :collapse="true"
-                 background-color="#545c64"
+                 background-color="#1FC7AD"
                  text-color="#fff"
                  active-text-color="#ffd04b">
             <div>
                 <router-link :to="item.path" style="text-decoration: none" v-for="(item,i) in menus"
                              :key="item.path">
                     <el-menu-item :index="item.path">
-                        <i :class="item.icon"></i>
+                        <i :class="item.icon"  style="color: white"></i>
                         <span slot="title">{{item.title}}</span>
                     </el-menu-item>
                 </router-link>

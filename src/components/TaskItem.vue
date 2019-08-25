@@ -148,9 +148,9 @@
         height: 30px;
         border-radius: 50px;
         /*//#66CCFF*/
-        background: #9966FF;
+        background: #1FC7AD;
         font-size: 10px;
-        font-weight: bolder;
+        /*font-weight: bolder;*/
         align-items: center;
         justify-content: center;
         align-self: center;
