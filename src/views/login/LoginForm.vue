@@ -44,7 +44,6 @@
             login() {
                 this.$api.login(this.user).then((res) => {
                     this.$store.state.user = res.data.user
-                    // todo 前端怎么存储用户的信息  cookies ? localStorage？ vuex 是否持久化的
                     window.localStorage.setItem("authorization", res.data.authorization)
                     window.localStorage.setItem("id",res.data.user.id)
                     this.$router.push("/ql/task")

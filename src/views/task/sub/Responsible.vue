@@ -145,7 +145,7 @@
     import draggable from 'vuedraggable'
     import AutoLoadPager from "../../../components/AutoLoadPager";
     import TaskItem from "../../../components/TaskItem";
-    import mp3 from '../../../assets/tip.mp3'
+    import mp3 from '../../../../static/tip.mp3'
 
 
     export default {
@@ -337,15 +337,12 @@
                     } else {
                         console.log("%c当前box类型错误" + JSON.stringify(item), "color: blue")
                     }
-
                 }
             },
             loadProjectUsers() {
                 this.$api.user.list().then(res => {
                     this.projectUsers = res.data.data
                     console.log("projectUsers", this.projectUsers)
-
-
                 })
             },
             initWebSocket() {

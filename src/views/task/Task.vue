@@ -16,11 +16,7 @@
                     </div>
                     <!--  盒子区域              //-->
                     <router-view></router-view>
-
-
                 </div>
-
-
             </div>
         </transition>
 

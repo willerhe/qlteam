@@ -5,7 +5,7 @@ import router from "../../router";
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 const http = axios.create({
-    baseURL: "http://106.15.178.205:9900/api/v1",
+    baseURL: process.env.VUE_APP_API_BASE,
     withCredentials: true,
 })
 
@@ -36,9 +36,8 @@ http.interceptors.response.use(function (response) {
     let data = error.response.data
     switch (statusCode) {
         case 401: {
-            // todo 当没有权限的时候跳转到登录页面
-            el.Message.warning(data || "登录信息过期，请重新登录。")
             router.push("/sys/login")
+            el.Message.warning(data || "登录信息过期，请重新登录。")
             break;
         }
         case 403: {
@@ -54,6 +53,7 @@ http.interceptors.response.use(function (response) {
             break;
         }
     }
+
     console.log(error)
     return Promise.reject(error);
 });

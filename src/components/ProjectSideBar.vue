@@ -1,6 +1,5 @@
 <template>
     <div>
-
         <el-menu style="height: 100vh"
                  :default-active="'p'+activeItem+1"
                  text-color="#545c64"
@@ -21,6 +20,17 @@
                      @node-click="clickProject"></el-tree>
 
         </el-menu>
+        <el-dialog
+                title="提示"
+                :visible.sync="dialogVisible"
+                width="30%"
+                :before-close="handleClose">
+            <span>这是一段信息</span>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+        </el-dialog>
     </div>
 
 
@@ -40,6 +50,7 @@
         },
         data() {
             return {
+                dialogVisible: false,
                 views: [{
                     name: '视图',
                     children: [{
@@ -73,6 +84,13 @@
             }
         },
         methods: {
+            handleClose(done) {
+                this.$confirm('确认关闭？')
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {});
+            },
             clickView(view) {
                 console.log(view)
                 if (view.path) {
@@ -87,7 +105,7 @@
 
             },
             openAdd() {
-                this.$message.success("todo 选择模板以新建项目")
+                this.dialogVisible = true
             },
             routeChange(to, from) {
                 this.rememberMe()
