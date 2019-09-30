@@ -274,7 +274,6 @@
             privateSaveNewItem(task) {
                 console.log("save new item")
                 this.newItem.box = task.name
-                this.newItem.kind = "private"
                 this.$api.task.create(this.newItem).then((res) => {
                     this.init()
                 })

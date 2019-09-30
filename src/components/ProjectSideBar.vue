@@ -1,23 +1,24 @@
 <template>
     <div>
-        <el-menu style="height: 100vh"
-                 :default-active="'p'+activeItem+1"
-                 text-color="#545c64"
-                 active-text-color="#ffd04b">
-            <div style="display: flex;justify-content: space-between;padding-left: 20px;padding-right: 20px;border-bottom: 1px solid #eee">
-                <p>列表</p>
-                <div style="display: flex;justify-content: center;align-items: center">
-                    <a>
-                        <span class="el-icon-menu add" style="cursor: pointer" @click="openAdd"></span>
-                    </a>
-
-                </div>
+        <div style="display: flex;justify-content: space-between;padding-left: 20px;padding-right: 20px;border-bottom: 1px solid #ffffff">
+            <p>项目</p>
+            <div style="display: flex;justify-content: center;align-items: center">
+                <a>
+                    <span class="el-icon-menu add" style="cursor: pointer" @click="openAdd"></span>
+                </a>
 
             </div>
-            <el-tree :data="views" highlight-current default-expand-all @node-click="clickView"
-                     :props="defaultProps"></el-tree>
-            <el-tree :data="projectMenus" highlight-current default-expand-all :props="defaultProps"
-                     @node-click="clickProject"></el-tree>
+        </div>
+        <el-menu style="height: 100vh"
+                 default-active="0"
+                 text-color="#545c64"
+                 active-text-color="#ffd04b">
+            <el-menu-item index="0">
+                <span slot="title">全部</span>
+            </el-menu-item>
+            <el-menu-item :index="m.id" v-for="m,i in projectMenus">
+                <span slot="title">{{i+1}}.{{m.name}}</span>
+            </el-menu-item>
 
         </el-menu>
         <el-dialog
@@ -65,15 +66,15 @@
                     },]
                 }],
                 projectMenus: [{
-                    name: '项目',
-                    children: [{
-                        name: '小东门项目'
-                    }, {
-                        name: '沃尔夫物联网'
-                    }, {
-                        name: '世瑞小龙虾`'
-                    },]
-                }],
+                    id: '1',
+                    name: '小东门项目'
+                }, {
+                    id: '2',
+                    name: '沃尔夫物联网'
+                }, {
+                    id: '3',
+                    name: '世瑞小龙虾'
+                },],
                 defaultProps: {
                     children: 'children',
                     label: 'name'
@@ -89,7 +90,8 @@
                     .then(_ => {
                         done();
                     })
-                    .catch(_ => {});
+                    .catch(_ => {
+                    });
             },
             clickView(view) {
                 console.log(view)

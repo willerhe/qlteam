@@ -10,15 +10,14 @@
                 </el-table-column>
                 <el-table-column
                         prop="status"
-                        label="状态"
-                        width="180">
+                        label="状态">
                 </el-table-column>
                 <el-table-column
                         prop="describe"
                         label="内容">
                 </el-table-column>
                 <el-table-column
-                        prop="leader"
+                        prop="leader.nickName"
                         label="负责人">
                 </el-table-column>
                 <el-table-column
